@@ -1,3 +1,17 @@
+# DictCC GitHub Repo von Enrique und Denis
+
+Die GitHub Repo für das Projekt in Interaktive Systeme. Das ganze Ding wurde mit React App gebootstrapt.
+
+An Enrique:
+
+Damit man bei sich das lokal laufen lassen kann, muss man Node.js und npm installiert haben.
+
+Falls du Windows benutzt:
+https://phoenixnap.com/kb/install-node-js-npm-on-windows
+
+Sobald das läuft, kannst du einfach den weiteren Schritten in dieser README folgen:
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
