@@ -1,15 +1,15 @@
 import { Component } from "react";
-import "./NavbarStyles.css";
+import "./OldNavbarStyles.css";
 
 import { MenuData } from "./MenuData";
 import { SvgIcon } from "@mui/material";
-import "./NavbarStyles.css";
+import "./OldNavbarStyles.css";
 
-class Navbar extends Component {
+class OldNavbar extends Component {
   render() {
     return (
       <nav className="NavbarItems">
-        <h1 className="logo"> Dicct
+        <h1 className="logo"> Dicc.t
           <i className="DictIcon">
           </i>
         </h1>
