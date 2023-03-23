@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import FAQ from './pages/FAQ';
 import Vokabeltrainer from './pages/Vokabeltrainer';
 import Community from './pages/Community';
+import LogIn from './pages/LogIn';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="FAQ" element={<FAQ></FAQ>} />
       <Route path="Vokabeltrainer" element={<Vokabeltrainer></Vokabeltrainer>}/>
       <Route path="Community" element={<Community></Community>} />
+      <Route path="Log In" element={<LogIn></LogIn>}/>
       <Route path="*" element={
       <div>
         This page does not exist

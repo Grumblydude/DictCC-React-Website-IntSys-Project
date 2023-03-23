@@ -13,8 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ'];
-const settings = ['Profile', 'Dashboard', 'Logout'];
+const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'TESTLogin'];
+const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
