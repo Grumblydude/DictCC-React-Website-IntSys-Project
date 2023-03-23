@@ -8,7 +8,7 @@ import Community from './pages/Community';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home></Home>} />
+      <Route path="Home" element={<Home></Home>} />
       <Route path="FAQ" element={<FAQ></FAQ>} />
       <Route path="Vokabeltrainer" element={<Vokabeltrainer></Vokabeltrainer>}/>
       <Route path="Community" element={<Community></Community>} />
