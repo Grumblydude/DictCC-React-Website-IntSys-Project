@@ -6,12 +6,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Card } from '@mui/material';
+import { Card, Stack } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+import { Divider, Grid, Tab, Tabs,  } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 
 
@@ -24,16 +27,25 @@ export default function LogIn() {
         event.preventDefault();
     };
     
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'left',
+        color: theme.palette.text.secondary,
+      }));
+
     return(
         <Card className='LogIn'>
             <CardContent>
+
                 <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                     <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                     <TextField id="input-with-sx" label="Name" variant="standard" />
                 </Box>
 
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
-                    <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                <FormControl sx={{ m: 0, width: '25ch', paddingX:4}} variant="standard">
+                    <InputLabel sx={{paddingX:4}} htmlFor="standard-adornment-password">Password</InputLabel>
                     <Input
                         id="standard-adornment-password"
                         type={showPassword ? 'text' : 'password'}
@@ -50,7 +62,7 @@ export default function LogIn() {
                         }
                     />
                 </FormControl>
-
+                
                 <Button 
                     onClick={() => {
                         alert('clicked');
@@ -59,7 +71,7 @@ export default function LogIn() {
                     variant="contained">
                     Log In
                 </Button>
-
+                
             </CardContent>
         </Card>
     )
