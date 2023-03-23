@@ -16,7 +16,7 @@ function App() {
       <div>
         This page does not exist
         <h2>404</h2>
-        <Link to='/'>Back Home</Link>
+        <Link to='Home'>Back Home</Link>
       </div>} />
     </Routes>
   );
