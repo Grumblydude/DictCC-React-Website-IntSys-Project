@@ -10,7 +10,6 @@ function Community() {
         <React.Fragment>
         <CssBaseline />
         <div className="Home">
-
             <main>
                 <div>
                     <Container minWidth="xs">
