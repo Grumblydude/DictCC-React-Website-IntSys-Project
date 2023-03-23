@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dictionary>
+  <language type="german">
+    <entry base="Informatik">
+      <definition>
+        " "
+      </definition>
+
+      <translations> 
+        <english>"Informatics"</english>
+      </translations>
+
+      <tags>
+        <tag>"IT"</tag>
+      </tags> 
+
+      <examples>
+        <example>
+          " "
+        </example> 
+      </examples> 
+    </entry>
+
+  </language>
+
+  <language type="english">
+    <entry base="Informatics">
+      <definition>
+        " "
+      </definition>
+
+      <translations> 
+        <german>"Informatik"</german>
+      </translations>
+
+      <tags>
+        <tag>"IT"</tag>
+      </tags>
+
+      <examples>
+        <example>
+          " "
+        </example> 
+      </examples> 
+    </entry>
+
+  </language>
+</dictionary>  
