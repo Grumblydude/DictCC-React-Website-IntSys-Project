@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Divider, Grid, Tab, Tabs, TextField } from '@mui/material';
 import { Container } from '@mui/system';
+import TranslatorBar from './TranslatorBar';
+import TranslatorTextInput from './TranslatorTextInput';
 
 
 export default function Translator() {
@@ -18,56 +20,26 @@ export default function Translator() {
   };
 
   return (
-    <Card className="translator">
+    <Card className="translator" >
       <CardContent>
-        <Grid container justifyContent="center" direction="row" spacing={0}> 
-          <Grid item xs={2}>
-            <Grid item>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                aria-label="secondary tabs example"
-              >
-                <Tab value="one" label="German" />
-                <Tab value="two" label="English" />
-              </Tabs>
-            </Grid>
-
-            <Grid item>
-              <TextField id="standard-basic" label="Eingabe" variant="standard" />
-            </Grid>
+        <TranslatorBar></TranslatorBar>
+        <Divider></Divider>
+        <Grid container>
+          {/*TODO!!! USE STYLING THAT ACTUALLY USESA CORRECT MARGIN IN RELATION*/}
+          <Grid item style={{ height: 200, width: 565 }}>
+            <TranslatorTextInput></TranslatorTextInput>
           </Grid>
-          <Divider orientation="vertical" flexItem>
-            
-          </Divider>
-          <Grid item xs={2}>
-            <Grid item>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                aria-label="secondary tabs example"
-              >
-                <Tab value="two" label="German" />
-                <Tab value="one" label="English" />
-              </Tabs>
-            </Grid>
-            <Grid item alignContent="start">
-              <TextField id="standard-basic" label="Eingabe" variant="standard" />
-            </Grid>
+          <Divider orientation='vertical' flexItem></Divider>
+          <Grid item>
+            <TranslatorTextInput></TranslatorTextInput>
           </Grid>
         </Grid>
-      </CardContent>
 
+      </CardContent>
       <CardActions>
 
       </CardActions>
     </Card>
   
-
-
   );
 }

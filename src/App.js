@@ -4,6 +4,8 @@ import Appbar from './components/Appbar';
 import Translator from './components/Translator';
 import { Container } from '@mui/system';
 import { Button, Card, Grid, Typography } from '@mui/material';
+import Transbar from './components/TranslatorBar';
+import TranslatorTextInput from './components/TranslatorTextInput';
 
 function App() {
   return (
@@ -11,14 +13,11 @@ function App() {
       <CssBaseline />
     <div className="App">
       <Appbar position="relative"></Appbar>
-
       <main>
         <div>
-          <Container>
-            <Typography variant='h2' align='center' >Hello Test Position</Typography>
+          <Container minWidth="xs">
+            <Typography variant='h2' align='center'>Roboto?</Typography>
             <Translator></Translator>
-
-  
             <div>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
