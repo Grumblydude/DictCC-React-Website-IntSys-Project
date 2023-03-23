@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'TESTLogin'];
+const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'Login'];
 const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -89,7 +89,7 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link style={{ textDecoration: "none", color: "white" }} to={page}>
+                    <Link style={{ textDecoration: "none", color: "black" }} to={page}>
                       {page}
                     </Link>
                   </Typography>
@@ -152,7 +152,11 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: "none", color: "black" }} to={setting}>
+                      {setting}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>

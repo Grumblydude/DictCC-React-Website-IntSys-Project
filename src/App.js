@@ -9,11 +9,12 @@ import LogIn from './pages/LogIn';
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Home></Home>} />
       <Route path="Home" element={<Home></Home>} />
       <Route path="FAQ" element={<FAQ></FAQ>} />
       <Route path="Vokabeltrainer" element={<Vokabeltrainer></Vokabeltrainer>}/>
       <Route path="Community" element={<Community></Community>} />
-      <Route path="Log In" element={<LogIn></LogIn>}/>
+      <Route path="LogIn" element={<LogIn></LogIn>}/>
       <Route path="*" element={
       <div>
         This page does not exist
