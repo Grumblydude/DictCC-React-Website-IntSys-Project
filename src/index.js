@@ -9,7 +9,7 @@ import Appbar from './pages/components/Appbar';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <Appbar position="relative"></Appbar>
+        <Appbar position="absolute"></Appbar>
         <App />
     </BrowserRouter>
 );
