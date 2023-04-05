@@ -1,5 +1,7 @@
 import { Divider, Grid, Tab, Tabs } from '@mui/material';
 import * as React from 'react';
+import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 export default function TranslatorBar() {
 
@@ -9,8 +11,8 @@ export default function TranslatorBar() {
         setValue(newValue);
     };
     return (
-        <Grid container>
-            <Grid style={{ width: 565 }} backgroundColor="limegreen">
+        <Grid container justifyContent="space-between">
+            <Grid item style={{ width: 565 }} backgroundColor="limegreen">
                     <Tabs
                         value={value}
                         onChange={handleChange}
@@ -22,7 +24,9 @@ export default function TranslatorBar() {
                         <Tab value="two" label="English" />
                     </Tabs>
             </Grid>
-            <Divider orientation='vertical' flexItem></Divider>
+            <Grid item backgroundColor="red">
+                <SyncAltOutlinedIcon></SyncAltOutlinedIcon>
+            </Grid>
             <Grid item backgroundColor="lightblue">
                     <Tabs
                         value={value}
@@ -34,6 +38,9 @@ export default function TranslatorBar() {
                         <Tab value="two" label="German" />
                         <Tab value="one" label="English" />
                     </Tabs>
+            </Grid>
+            <Grid item backgroundColor="red">
+                <SettingsOutlinedIcon></SettingsOutlinedIcon>
             </Grid>
         </Grid>
 

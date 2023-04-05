@@ -5,9 +5,20 @@ import FAQ from './pages/FAQ';
 import Vokabeltrainer from './pages/Vokabeltrainer';
 import Community from './pages/Community';
 import LogIn from './pages/LogIn';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+{/*This is the default theme*/}
+const theme = createTheme({
+  palette: {
+    background: {
+      default: '#D3D3D3', // slight gray
+    },
+  },
+});
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <Routes>
       <Route path="/" element={<Home></Home>} />
       <Route path="Home" element={<Home></Home>} />
@@ -22,6 +33,7 @@ function App() {
         <Link to='Home'>Back Home</Link>
       </div>} />
     </Routes>
+    </ThemeProvider>
   );
 }
 
