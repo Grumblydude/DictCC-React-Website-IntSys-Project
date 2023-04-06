@@ -11,7 +11,7 @@ export default function TranslatorBar() {
         setValue(newValue);
     };
     return (
-        <Grid container justifyContent="space-between">
+        <Grid container justifyContent="">
             <Grid item style={{ width: 565 }} backgroundColor="limegreen">
                     <Tabs
                         value={value}

@@ -5,6 +5,7 @@ import Translator from './components/Translator';
 import { Container } from '@mui/system';
 import {Card, Grid, Typography } from '@mui/material';
 
+
 function Home() {
     return (
         <React.Fragment>
@@ -12,10 +13,12 @@ function Home() {
             <div className="Home">
                 <main>
                     <div>
+                        
                         <Container minWidth="xs">
                             <Card sx={{ marginTop: '3rem' }}>
                                 <Translator></Translator>
                             </Card>
+
                             <div>
                                 <Grid container spacing={2} justifyContent="center">
                                     <Grid item>
