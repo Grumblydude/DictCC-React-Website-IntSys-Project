@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Appbar from './components/Appbar';
 import Translator from './components/Translator';
 import { Container } from '@mui/system';
-import {Card, Grid, Typography } from '@mui/material';
+import { Card, Grid, Typography } from '@mui/material';
 
 
 function Home() {
@@ -13,12 +13,7 @@ function Home() {
             <div className="Home">
                 <main>
                     <div>
-                        
-                        <Container minWidth="xs">
-                            <Card sx={{ marginTop: '3rem' }}>
-                                <Translator></Translator>
-                            </Card>
-
+                            <Translator></Translator>
                             <div>
                                 <Grid container spacing={2} justifyContent="center">
                                     <Grid item>
@@ -29,7 +24,6 @@ function Home() {
                                     </Grid>
                                 </Grid>
                             </div>
-                        </Container>
                     </div>
                 </main>
             </div>
