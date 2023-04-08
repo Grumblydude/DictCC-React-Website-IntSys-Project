@@ -7,6 +7,7 @@ import { Grid } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Vokabelkarte from './components/Vokabelkarte';
 
 function Vokabeltrainer() {
 
@@ -20,7 +21,7 @@ function Vokabeltrainer() {
                     <Typography variant='h2' align='center'>Vokabeltrainer</Typography>
                         <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={4} padding={1}>
                             <Grid item >
-                                <Card style={{ width: 202, height: 216 }}> Card 1</Card>
+                                <Vokabelkarte></Vokabelkarte>
                             </Grid>
                             <Grid item>
                                 <Card style={{ width: 202, height: 216 }}> Card 2</Card>
@@ -51,3 +52,5 @@ function Vokabeltrainer() {
 }
 
 export default Vokabeltrainer;
+
+
