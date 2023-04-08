@@ -12,7 +12,7 @@ function FAQ() {
         <div className="Home">
             <main>
                 <div>
-                    <Container minWidth="xs">
+                    <Container>
                         <Typography variant='h2' align='center'>Hier kommt die FAQ rein</Typography>
                     </Container>
                 </div>

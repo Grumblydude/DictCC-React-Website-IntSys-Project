@@ -17,7 +17,7 @@ function Vokabeltrainer() {
         <div className="Home">
             <main>
                 <div>
-                    <Container minWidth="xs">
+                    <Container>
                     <Typography variant='h2' align='center'>Vokabeltrainer</Typography>
                         <Grid container direction="row" justifyContent="center" alignItems="flex-start" spacing={4} padding={1}>
                             <Grid item >

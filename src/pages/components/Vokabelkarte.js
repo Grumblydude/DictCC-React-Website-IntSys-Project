@@ -1,8 +1,26 @@
 import { Card, CardHeader, CardContent, Divider, IconButton, Typography } from '@mui/material';
 import { Delete, Share, Edit, Favorite } from '@mui/icons-material';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
+import { useState } from 'react';
+import { Dialog} from '@mui/material';
+import ChoiceCards from './ChoiceCards';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 export default function Vokabelkarte() {
+    const [open, setOpen] = useState(false);
+
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Card sx={{ width: 202, height: 216 }}>
             <CardHeader
@@ -14,9 +32,13 @@ export default function Vokabelkarte() {
                 <Typography fontSize={14} align="center" sx={{ marginTop: -1, marginBottom: 1 }}>
                     50/500
                 </Typography>
-                <IconButton sx={{ marginBottom: 2 }}>
+                <IconButton onClick={handleOpen} sx={{ marginBottom: 2 }}>
                     <PlayArrowOutlinedIcon fontSize='large' />
                 </IconButton>
+                <Dialog open={open} onClose={handleClose} maxWidth="xl">
+                    <ChoiceCards></ChoiceCards>
+                </Dialog>
+
                 <div sx={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
                     <IconButton>
                         <Delete />

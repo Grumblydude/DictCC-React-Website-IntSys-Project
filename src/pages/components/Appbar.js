@@ -36,11 +36,11 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" sx={{ bgcolor: '#FFFBFF' }}>
+      <Container maxwidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
             href="/"
@@ -50,11 +50,11 @@ function ResponsiveAppBar() {
               fontFamily: 'roboto',
               fontWeight: 700,
               letterSpacing: '.2rem',
-              color: 'inherit',
+              color: 'black',
               textDecoration: 'none',
             }}
           >
-            <Link style={{ textDecoration: "none", color: "white" }} to={"Home"}>Dicc.t</Link> 
+            <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link> 
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="black"
             >
               <MenuIcon />
             </IconButton>
@@ -83,7 +83,7 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none', color: "black"},
               }}
             >
               {pages.map((page) => (
@@ -113,15 +113,15 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            <Link style={{ textDecoration: "none", color: "white" }} to={"Home"}>Dicc.t</Link> 
+            <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link> 
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}>
-                <Link style={{ textDecoration: "none", color: "white" }} to={page}>
+                sx={{ my: 2, color: 'black', display: 'block' }}>
+                <Link style={{ textDecoration: "none", color: "black" }} to={page}>
                   {page}
                 </Link>
               </Button>

@@ -1,9 +1,10 @@
-import { Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import axios from 'axios';
+import { Autocomplete } from 'materialize-css';
 
 export default function Translator() {
 
@@ -75,7 +76,7 @@ export default function Translator() {
 
   return (
     <>
-      <Container minWidth="xs">
+      <Container>
         <Card sx={{ marginTop: '3rem' }}>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container>
@@ -87,29 +88,41 @@ export default function Translator() {
                     onChange={handleSourceLanguageChange}
                     variant="scrollable"
                     scrollButtons="auto"
-                    sx={{ flexGrow: 0.45 }}
+                    sx={{ flexGrow: 0.595, '& .Mui-selected': { color: '#FF8E13' }}}
+                    TabIndicatorProps={{
+                      style: {
+                        backgroundColor: "#FF8E13"
+                      }
+                    }}
                   >
-                    <Tab label={detectLanguageKey} />
+                    {/*<Tab label={detectLanguageKey} />*/}
                     <Tab label="English" value="en" />
                     <Tab label="German" value="de" />
                   </Tabs>
                   <Typography variant="h6" component="span" sx={{ display: 'flex', alignItems: 'center', marginX: 0 }}>
-                    <SyncAltOutlinedIcon onClick={() => {
-                      setSourceLanguage(targetLanguage);
-                      setTargetLanguage(sourceLanguage);
-                    }} />
+                    <IconButton>
+                      <SyncAltOutlinedIcon onClick={() => {
+                        setSourceLanguage(targetLanguage);
+                        setTargetLanguage(sourceLanguage);
+                      }} />
+                    </IconButton>
                   </Typography>
                   <Tabs
                     value={targetLanguage}
                     onChange={handleTargetLanguageChange}
                     variant="scrollable"
                     scrollButtons="auto"
-                    sx={{ flexGrow: 0.52 }}
+                    sx={{ flexGrow: 0.52, '& .Mui-selected': { color: '#FF8E13' }}}
+                    TabIndicatorProps={{
+                      style: {
+                        backgroundColor: "#FF8E13"
+                      }
+                    }}
                   >
                     <Tab label="English" value="en" />
                     <Tab label="German" value="de" />
                   </Tabs>
-                  <Typography variant="h6" component="span" sx={{ display: 'flex', alignItems: 'center', marginX: 0 }}>
+                  <Typography variant="h6" component="span" sx={{ display: 'flex', alignItems: 'center', marginX: 1.5 }}>
                     <SettingsOutlinedIcon></SettingsOutlinedIcon>
                   </Typography>
                 </Box>

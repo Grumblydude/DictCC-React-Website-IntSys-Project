@@ -13,17 +13,7 @@ function Home() {
             <div className="Home">
                 <main>
                     <div>
-                            <Translator></Translator>
-                            <div>
-                                <Grid container spacing={2} justifyContent="center">
-                                    <Grid item>
-                                        {/*Hier kommt noch zeug hin*/}
-                                    </Grid>
-                                    <Grid item>
-                                        {/*Hier kommt noch zeug hin*/}
-                                    </Grid>
-                                </Grid>
-                            </div>
+                        <Translator></Translator>
                     </div>
                 </main>
             </div>

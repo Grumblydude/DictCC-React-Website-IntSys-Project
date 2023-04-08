@@ -5,11 +5,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 //import './index.css';
 import App from './App';
 import Appbar from './pages/components/Appbar';
+import { Card } from '@mui/material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <Appbar position="absolute"></Appbar>
+        <Card>
+            <Appbar position="absolute"></Appbar>
+        </Card>
         <App />
     </BrowserRouter>
 );

@@ -12,7 +12,7 @@ function Community() {
         <div className="Home">
             <main>
                 <div>
-                    <Container minWidth="xs">
+                    <Container>
                         <Typography variant='h2' align='center'>Community</Typography>
                     </Container>
                 </div>
