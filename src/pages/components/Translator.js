@@ -4,7 +4,6 @@ import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import axios from 'axios';
-import { Autocomplete } from 'materialize-css';
 
 export default function Translator() {
 
@@ -15,8 +14,9 @@ export default function Translator() {
   const [languagesList, setLanguagesList] = useState([])
   const [selectedLanguageKey, setLanguageKey] = useState('')
   const [resultText, setResultText] = useState('');
-
   const [showCards, setShowCards] = useState(false);
+
+
 
   const handleSourceLanguageChange = (event, newValue) => {
     if (newValue !== targetLanguage) {
@@ -88,7 +88,7 @@ export default function Translator() {
                     onChange={handleSourceLanguageChange}
                     variant="scrollable"
                     scrollButtons="auto"
-                    sx={{ flexGrow: 0.595, '& .Mui-selected': { color: '#FF8E13' }}}
+                    sx={{ flexGrow: 0.595, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
                     TabIndicatorProps={{
                       style: {
                         backgroundColor: "#FF8E13"
@@ -112,7 +112,7 @@ export default function Translator() {
                     onChange={handleTargetLanguageChange}
                     variant="scrollable"
                     scrollButtons="auto"
-                    sx={{ flexGrow: 0.52, '& .Mui-selected': { color: '#FF8E13' }}}
+                    sx={{ flexGrow: 0.52,indicator: { backgroundColor: '#FF8E13' }, '& .Mui-selected': { color: '#FF8E13' } }}
                     TabIndicatorProps={{
                       style: {
                         backgroundColor: "#FF8E13"
