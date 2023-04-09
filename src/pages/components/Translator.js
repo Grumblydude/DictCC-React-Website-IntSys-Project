@@ -1,31 +1,36 @@
-import {Autocomplete, Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+/*TODO:
+Translator bekommt zurzeit nur das array von examples und checkt deren value. Jedoch muss erstmal geschaut werden,
+von welcher richtung man kommt. Sprich wenn deutsch die sprache grad, dann muss auch deutsch zu englisch überall gesetzt werden.
+Vice Versa.
+
+Die ganzen tauschereien habe ich bisjetzt nicht implementiert.
+An sich funktioniert es aber schonmal wie intended. In die Definition etc. implementiere ich erst, wenn das Programm weiß,
+wann was benutzt werden muss etc. aber erst am montag das machen. Heute schon hirn frittiert.
+
+Optisch sollte es erstmal so passen, am ende nochmal finetuning mit sx/css.
+
+
+
+*/
+
+
+
+import { Autocomplete, Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import axios from 'axios';
 import examples from './examples';
-
+import { inputLabelClasses } from "@mui/material/InputLabel";
+import { styled } from '@mui/material/styles';
 export default function Translator() {
   const examples = require("./examples");
-
-  const options = [
-    { title: 'Option 1' },
-    { title: 'Option 2' },
-    { title: 'Option 3' },
-  ];
 
   const [sourceLanguage, setSourceLanguage] = useState('de');
   const [targetLanguage, setTargetLanguage] = useState('en');
   const [inputText, setInputText] = useState('');
-  const [detectLanguageKey, setdetectedLanguageKey] = useState('')
-  const [languagesList, setLanguagesList] = useState([])
-  const [selectedLanguageKey, setLanguageKey] = useState('')
-  const [resultText, setResultText] = useState('');
-  const [showCards, setShowCards] = useState(false);
-
-
-
+  const [showAccordion, setShowAccordion] = useState(false);
   const handleSourceLanguageChange = (event, newValue) => {
     if (newValue !== targetLanguage) {
       setSourceLanguage(newValue);
@@ -44,43 +49,55 @@ export default function Translator() {
     }
   };
 
-
-  const getLanguageSource = () => {
-    axios.post(`https://libretranslate.de/detect`, {
-      q: inputText
-    })
-      .then((response) => {
-        setdetectedLanguageKey(response.data[0].language)
-      })
-  }
-
-  useEffect(() => {
-    axios.get(`https://libretranslate.de/languages`)
-      .then((response) => {
-        setLanguagesList(response.data)
-      })
-
-    getLanguageSource()
-  }, [inputText])
-
-  const languageKey = (selectedLanguage) => {
-    setLanguageKey(selectedLanguage.target.value)
-  }
-
-  const translateText = () => {
-    getLanguageSource();
-
-    let data = {
-      q: inputText,
-      source: detectLanguageKey,
-      target: selectedLanguageKey
+  const resultTextColor = () => {
+    if (giveGermanTranslation() === "" || giveGermanTranslation() === "Result") {
+      
+      return "grey"
     }
-    axios.post(`https://libretranslate.de/translate`, data)
-      .then((response) => {
-        setResultText(response.data.translatedText)
-        setShowCards(true);
-      })
+    setShowAccordion(true);
+    return "black"
   }
+
+  const giveGermanTranslation = () => {
+    const selectedExample = examples.find((example) => example.value === inputText);
+    if (selectedExample) {
+      return selectedExample.german;
+    } else {
+      return "Result";
+    }
+  };
+  const giveGERdefinition = () => {
+    const selectedExample = examples.find((example) => example.value === inputText);
+    if (selectedExample) {
+      return selectedExample.GERdefinition;
+    } else {
+      return "Keine Definition gefunden :C";
+    }
+  };
+  const giveENdefinition = () => {
+    const selectedExample = examples.find((example) => example.value === inputText);
+    if (selectedExample) {
+      return selectedExample.ENdefinition;
+    } else {
+      return "No Definition found :C";
+    }
+  };
+  const giveGERexample = () => {
+    const selectedExample = examples.find((example) => ((example.value) || (example.german)) === inputText);
+    if (selectedExample) {
+      return selectedExample.GERexample;
+    } else {
+      return "Kein Beispiel vorhanden";
+    }
+  };
+  const giveENexample = () => {
+    const selectedExample = examples.find((example) => ((example.value) || (example.german)) === inputText);
+    if (selectedExample) {
+      return selectedExample.ENexample;
+    } else {
+      return "No examples found";
+    }
+  };
 
   return (
     <>
@@ -141,61 +158,58 @@ export default function Translator() {
               <Grid item xs={6}>
                 <Box marginLeft={1} padding={1} sx={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
                   <Autocomplete
-                    id="combo-box-demo"
-                    freeSolo
-                    options= {examples.map((values) => values.value)}
-                    renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-                  />
-                  {// TODO COMBOBOX STYLING CORRECT
-                  }
-                  {/*<TextField
-                    rows={6}
                     fullWidth
-                    multiline
-                    label="Original Text"
-                    variant="standard"
-                    sx={{ height: '100%' }}
-                    InputProps={{ disableUnderline: true }}
-                    onChange={(e) => setInputText(e.target.value)}
-                  />*/}
+                    id="textinput1"
+                    freeSolo
+                    options={examples.map((values) => values.value)}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        InputProps={{
+                          ...params.InputProps,
+                          disableUnderline: true,
+                        }}
+                        InputLabelProps={{
+                          ...params.InputLabelProps,
+                          sx: {
+                            [`&.${inputLabelClasses.shrink}`]: {
+                              color: "#FF8E13",
+                            },
+                          },
+                        }}
+                        label="Input Text"
+                        variant="standard"
+                        value={inputText}
+                      />
+                    )}
+                    onChange={(event, value) => setInputText(value)}
+                  />
                 </Box>
               </Grid>
               <Divider orientation="vertical" flexItem sx={{ mr: "-1px" }} />
               <Grid item xs={6} >
-                <Box marginLeft={1} padding={1} sx={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
-                  <TextField
-                    rows={6}
-                    fullWidth
-                    multiline
-                    label="Result"
-                    variant="standard"
-                    sx={{ height: '100%' }}
-                    InputProps={{ disableUnderline: true }}
-                    value={resultText}
-                  />
+                <Box marginLeft={1} padding={1} sx={{ display: 'flex', flexDirection: 'row', height: '200px ' }}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      padding: '20px 0px',
+                      overflow: 'auto',
+                      color: resultTextColor
+                    }}
+                  >
+                    {giveGermanTranslation()}
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
           </Box>
         </Card>
       </Container>
-      {/*Temporary Language Selection TODO: DELETE AFTER TABS ARE DONE*/}
-      <select className="language-select" onChange={languageKey}>
-        <option>Please Select Temporary TARGET Language..</option>
-        {languagesList.map((language) => {
-          return (
-            <option value={language.code}>
-              {language.name}
-            </option>
-          )
-        })}
-      </select>
-      <Button
-        onClick={translateText}
-      > Translate</Button>
       <Container>
         <div>
-          {showCards && ( // render cards if showCards is true
+          {showAccordion && ( // render cards if showCards is true
 
             <Paper>
               <Grid container spacing={0.5}>
