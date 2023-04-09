@@ -1,4 +1,4 @@
-const words = [
+const examples = [
     {
       value: 'hello',
       german: 'hallo',
@@ -28,5 +28,5 @@ const words = [
     },
     // add more words here...
   ];
-  
-  export { words };
+
+  module.exports = examples

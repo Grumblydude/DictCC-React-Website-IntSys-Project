@@ -1,11 +1,19 @@
-import { Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+import {Autocomplete, Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import axios from 'axios';
+import examples from './examples';
 
 export default function Translator() {
+  const examples = require("./examples");
+
+  const options = [
+    { title: 'Option 1' },
+    { title: 'Option 2' },
+    { title: 'Option 3' },
+  ];
 
   const [sourceLanguage, setSourceLanguage] = useState('de');
   const [targetLanguage, setTargetLanguage] = useState('en');
@@ -100,11 +108,11 @@ export default function Translator() {
                     <Tab label="German" value="de" />
                   </Tabs>
                   <Typography variant="h6" component="span" sx={{ display: 'flex', alignItems: 'center', marginX: 0 }}>
-                    <IconButton>
-                      <SyncAltOutlinedIcon onClick={() => {
-                        setSourceLanguage(targetLanguage);
-                        setTargetLanguage(sourceLanguage);
-                      }} />
+                    <IconButton onClick={() => {
+                      setSourceLanguage(targetLanguage);
+                      setTargetLanguage(sourceLanguage);
+                    }} >
+                      <SyncAltOutlinedIcon />
                     </IconButton>
                   </Typography>
                   <Tabs
@@ -112,7 +120,7 @@ export default function Translator() {
                     onChange={handleTargetLanguageChange}
                     variant="scrollable"
                     scrollButtons="auto"
-                    sx={{ flexGrow: 0.52,indicator: { backgroundColor: '#FF8E13' }, '& .Mui-selected': { color: '#FF8E13' } }}
+                    sx={{ flexGrow: 0.52, indicator: { backgroundColor: '#FF8E13' }, '& .Mui-selected': { color: '#FF8E13' } }}
                     TabIndicatorProps={{
                       style: {
                         backgroundColor: "#FF8E13"
@@ -132,7 +140,15 @@ export default function Translator() {
 
               <Grid item xs={6}>
                 <Box marginLeft={1} padding={1} sx={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
-                  <TextField
+                  <Autocomplete
+                    id="combo-box-demo"
+                    freeSolo
+                    options= {examples.map((values) => values.value)}
+                    renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                  />
+                  {// TODO COMBOBOX STYLING CORRECT
+                  }
+                  {/*<TextField
                     rows={6}
                     fullWidth
                     multiline
@@ -141,7 +157,7 @@ export default function Translator() {
                     sx={{ height: '100%' }}
                     InputProps={{ disableUnderline: true }}
                     onChange={(e) => setInputText(e.target.value)}
-                  />
+                  />*/}
                 </Box>
               </Grid>
               <Divider orientation="vertical" flexItem sx={{ mr: "-1px" }} />
