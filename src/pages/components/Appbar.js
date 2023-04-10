@@ -11,10 +11,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { MenuData } from "./MenuData";
+import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Vokabeln', 'Community', 'FAQ'];
-const settings = ['Profile', 'Dashboard', 'Logout'];
+const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'Login'];
+const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,11 +36,11 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" sx={{ bgcolor: '#FFFBFF' }}>
+      <Container maxwidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
             href="/"
@@ -50,11 +50,11 @@ function ResponsiveAppBar() {
               fontFamily: 'roboto',
               fontWeight: 700,
               letterSpacing: '.2rem',
-              color: 'inherit',
+              color: 'black',
               textDecoration: 'none',
             }}
           >
-            Dicc.t
+            <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link> 
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="black"
             >
               <MenuIcon />
             </IconButton>
@@ -83,12 +83,16 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none', color: "black"},
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: "none", color: "black" }} to={page}>
+                      {page}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -109,16 +113,17 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Dicc.t
+            <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link> 
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
+                sx={{ my: 2, color: 'black', display: 'block' }}>
+                <Link style={{ textDecoration: "none", color: "black" }} to={page}>
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>
@@ -147,7 +152,11 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: "none", color: "black" }} to={setting}>
+                      {setting}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
