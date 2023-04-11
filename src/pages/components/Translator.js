@@ -1,11 +1,5 @@
 /*TODO:
-CHANGE TITLES OF BOXES TO CURRENT LANGUAGE
-WORK ON HOW TO FIX THE AUTOCOMPLETE INPUT SO THAT OTHER FUNCTIONS CAN CHANGE
-Maybe change the onChange to something like onChange = ... handleInput()
-and then write a handleinput which works with the stuff, i dont know man....
-
-Die ganzen tauschereien habe ich bisjetzt nicht implementiert.
-An sich funktioniert es aber schonmal wie intended
+Fix the bug where autocomplete doesnt update the value. However this low prio since the other features need to be installed.
 
 */
 
@@ -275,7 +269,7 @@ export default function Translator() {
             {showAccordion && ( // render cards if showCards is true
 
               <Paper elevation={0}>
-                <Grid container spacing={0.5} backgroundColor="darkgrey">
+                <Grid container spacing={0.5} backgroundColor="lightgrey">
                   <Grid item xs={12}>
                   </Grid>
                   <Grid item xs={12}>
@@ -299,7 +293,7 @@ export default function Translator() {
                         aria-controls="beispiele-content"
                         id="beispiele-header"
                       >
-                        <Typography variant="h5">Beispiele</Typography>
+                        <Typography variant="h5">{sourceLanguage === "de" ? "Beispiele" : "Examples"}</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography variant="body1">{getExample()}</Typography>
@@ -314,16 +308,23 @@ export default function Translator() {
                         aria-controls="woerterbuch-content"
                         id="woerterbuch-header"
                       >
-                        <Typography variant="h5">Wörterbuch</Typography>
+                        <Typography variant="h5">{sourceLanguage === "de" ? "Wörterbuch" : "Lexicon"}</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography variant="body1">
-                          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                            {getwordArray().map(word => (
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {getwordArray().map(word => (
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                '&:hover': {
+                                  color: '#FF8E13',
+                                },
+                              }}
+                            >
                               <div key={word} style={{ padding: '0.5rem' }}>{word}</div>
-                            ))}
-                          </div>
-                        </Typography>
+                            </Typography>
+                          ))}
+                        </div>
                       </AccordionDetails>
                     </Accordion>
                   </Grid>
