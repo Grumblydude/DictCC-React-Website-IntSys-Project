@@ -4,15 +4,13 @@ import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import FlashOnOutlinedIcon from '@mui/icons-material/FlashOnOutlined';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 export default function LearningMethods() {
 
   const methods = [
-    { text: "Standard", icon: <LayersOutlinedIcon fontSize="inherit" />, link: "/StandardTrain" },
-    { text: "Image", icon: <ImageOutlinedIcon fontSize="inherit" />, link: "/ImageTrain" },
-    { text: "Speedrun", icon: <FlashOnOutlinedIcon fontSize="inherit" />, link: "/SpeedrunTrain" },
+    { text: "Standard", icon: <LayersOutlinedIcon fontSize="inherit" />, link: "../Vokabeltrainer/StandardTrain" },
+    { text: "Image", icon: <ImageOutlinedIcon fontSize="inherit" />, link: "../Vokabeltrainer/ImageTrain" },
+    { text: "Speedrun", icon: <FlashOnOutlinedIcon fontSize="inherit" />, link: "../Vokabeltrainer/SpeedrunTrain" },
   ];
-
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
 
   const handleCardMouseEnter = (index) => {

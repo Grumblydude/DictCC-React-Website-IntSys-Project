@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Card>
-            <Appbar position="absolute"></Appbar>
+            <Appbar position="sticky"></Appbar>
         </Card>
         <App />
     </BrowserRouter>
