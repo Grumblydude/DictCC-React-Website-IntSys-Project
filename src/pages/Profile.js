@@ -34,9 +34,9 @@ export default function Profile() {
                     src="src\resources\cursedElon.jpg"
                     sx={{ width: 156, height: 156 }}
                 />
-                <TextField multiline name='ProfileName' variant="standart" disabled={editMode}>Jeff Muskberg</TextField>
-                <TextField multiline name='ProfileStats' variant="standart" disabled={editMode}>Real Name:/nTotal Score:/nMember Since:</TextField>
-                <TextField multiline name='InfoText' variant="standart" disabled={editMode}>Im rich af lol</TextField>
+                <TextField multiline name='ProfileName' variant="standard" disabled={editMode}>Jeff Muskberg</TextField>
+                <TextField multiline name='ProfileStats' variant="standard" disabled={editMode}>Real Name:/nTotal Score:/nMember Since:</TextField>
+                <TextField multiline name='InfoText' variant="standard" disabled={editMode}>Im rich af lol</TextField>
                 <Button variant='outlined' endIcon={<ModeEdit/>} onClick={handleClicktoggleEditMode}>
                     Edit
                 </Button>
