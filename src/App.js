@@ -20,7 +20,7 @@ import './pages/css/tokens.css'
 const theme = createTheme({
   palette: {
     background: {
-      default: 'lightgrey', // change to #FFFBFF later
+      default: '#FFFBFF', // change to #FFFBFF later
     },
   },
 });

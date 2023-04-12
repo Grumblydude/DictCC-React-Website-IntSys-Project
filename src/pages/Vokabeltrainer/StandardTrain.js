@@ -1,3 +1,5 @@
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 import { useState } from 'react';
 import {
     Card,
@@ -24,6 +26,8 @@ export default function StandardTrain() {
     };
 
     return (
+    <React.Fragment>
+        <CssBaseline />
         <div>
             <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
                 <DialogTitle>Pick a direction</DialogTitle>
@@ -113,5 +117,6 @@ export default function StandardTrain() {
             </Dialog>
             <Typography variant="h5">Standard Train</Typography>
         </div>
+    </React.Fragment>
     );
 }

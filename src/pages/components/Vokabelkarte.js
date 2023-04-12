@@ -61,8 +61,8 @@ export default function Vokabelkarte(props) {
                 <Typography fontSize={14} align="center" sx={{ marginTop: -1, marginBottom: 1 }}>
                     50/500
                 </Typography>
-                <IconButton onClick={handleOpen} sx={{ marginBottom: 3 }}>
-                    <PlayArrowOutlinedIcon fontSize='large' />
+                <IconButton onClick={handleOpen} sx={{fontSize: "3.2rem", marginBottom: 2 }}>
+                    <PlayArrowOutlinedIcon fontSize='inherit' />
                 </IconButton>
                 <Dialog open={open} onClose={handleClose} maxWidth="xl">
                     <ChoiceCards></ChoiceCards>

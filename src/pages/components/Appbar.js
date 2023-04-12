@@ -20,7 +20,7 @@ import '../css/theme.css'
 import '../css/tokens.css'
 import './Appbarstyles.css';
 
-const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'Login'];
+const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ'];
 const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
 
 function ResponsiveAppBar() {

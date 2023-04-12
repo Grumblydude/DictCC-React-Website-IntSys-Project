@@ -273,7 +273,7 @@ export default function Translator() {
             {showAccordion && ( // render cards if showCards is true
 
               <Paper elevation={0}>
-                <Grid container spacing={0.5} backgroundColor="lightGrey"> 
+                <Grid container spacing={0.5} backgroundColor="#FFFBFF"> 
                   <Grid item xs={12}>
                     <Accordion>
                       <AccordionSummary

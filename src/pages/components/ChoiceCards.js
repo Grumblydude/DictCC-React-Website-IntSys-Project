@@ -22,7 +22,7 @@ export default function LearningMethods() {
   };
 
   return (
-    <Box backgroundColor="lightgrey">
+    <Box backgroundColor="#FFFBFF" padding={4}>
       <Typography variant="h6" align="center">Choose your Learning Method</Typography>
       <Grid container spacing={3} padding={4} sx={{ mt: 2 }}>
         {methods.map((method, index) => (
