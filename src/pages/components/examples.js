@@ -6,7 +6,9 @@ const examples = [
     GERdefinition: 'Dings damit teste ich lol das ist meine definition',
     ENdefinition: 'hehe i am testing the definition, is it working????',
     GERexample: 'HALLO JÜRGEN VERYLONGEXAMPLESSCHMIDT',
-    ENexample: 'Hello JÜRGEN LONGEXAMPLEGUYSHIREHAMBROCKTOM'
+    ENexample: 'Hello JÜRGEN LONGEXAMPLEGUYSHIREHAMBROCKTOM',
+    ENsimilars: [""],
+    GERsimilars: [""]
   },
   {
     value: 'hello',

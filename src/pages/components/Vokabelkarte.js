@@ -1,3 +1,9 @@
+/*
+Vokabelkarte muss angepasst werden sodass sie einen Input bekommt und dann darauf die werte mapt etc.
+*/
+
+
+
 import { Card, CardHeader, CardContent, Divider, IconButton, Typography } from '@mui/material';
 import { Delete, Share, Edit, Favorite } from '@mui/icons-material';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
