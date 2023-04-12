@@ -5,6 +5,7 @@ import FAQ from './pages/FAQ';
 import Vokabeltrainer from './pages/Vokabeltrainer';
 import Community from './pages/Community';
 import LogIn from './pages/LogIn';
+import Profile from './pages/Profile';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 {/*This is the default theme*/}

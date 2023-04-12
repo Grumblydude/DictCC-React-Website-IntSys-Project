@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Card, Divider, Grid, Stack } from '@mui/material';
+import {Avatar,Typography, Card, Divider, Grid, Stack } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -14,7 +14,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { ModeEdit } from '@mui/icons-material';
 
-export default function LogIn() {
+export default function Profile() {
     const [editMode,toggleEditMode] = React.useState(true);
     const handleClicktoggleEditMode = () => toggleEditMode(editMode = !editMode)
     return(
@@ -28,10 +28,10 @@ export default function LogIn() {
             </Box>
             <Divider/>
             <Grid container spacing={2}>
-                <Grid xs={16}><Item></Item></Grid>
-                <Grid xs={16}><Item></Item></Grid>
-                <Grid xs={16}><Item></Item></Grid> 
-                <Grid xs={16}><Item></Item></Grid>    
+                <Grid xs={16}>item1</Grid>
+                <Grid xs={16}>item2</Grid>
+                <Grid xs={16}>item3</Grid> 
+                <Grid xs={16}>item4</Grid>    
             </Grid>
 
         </Stack>
