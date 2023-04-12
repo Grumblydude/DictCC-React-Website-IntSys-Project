@@ -26,6 +26,7 @@ function App() {
       <Route path="Vokabeltrainer" element={<Vokabeltrainer></Vokabeltrainer>}/>
       <Route path="Community" element={<Community></Community>} />
       <Route path="LogIn" element={<LogIn></LogIn>}/>
+      <Route path="Profile" element={<Profile></Profile>}/>
       <Route path="*" element={
       <div>
         This page does not exist
