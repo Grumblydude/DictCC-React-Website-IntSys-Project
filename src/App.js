@@ -6,6 +6,9 @@ import Vokabeltrainer from './pages/Vokabeltrainer';
 import Community from './pages/Community';
 import LogIn from './pages/LogIn';
 import Profile from './pages/Profile';
+import ImageTrain from './pages/ImageTrain';
+import StandardTrain from './pages/StandardTrain';
+import SpeedrunTrain from './pages/SpeedrunTrain';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './pages/css/colors.module.css'
@@ -33,6 +36,9 @@ function App() {
       <Route path="Community" element={<Community></Community>} />
       <Route path="LogIn" element={<LogIn></LogIn>}/>
       <Route path="Profile" element={<Profile></Profile>}/>
+      <Route path="SpeedrunTrain" element={<SpeedrunTrain></SpeedrunTrain>}/>
+      <Route path="ImageTrain" element={<ImageTrain></ImageTrain>}/>
+      <Route path="StandardTrain" element={<StandardTrain></StandardTrain>}/>
       <Route path="*" element={
       <div>
         This page does not exist
