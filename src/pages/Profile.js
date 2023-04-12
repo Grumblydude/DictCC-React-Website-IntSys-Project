@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Card, Divider, Grid, Stack } from '@mui/material';
-import Button from '@mui/material/Button';
+import ToggleButton from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -15,8 +15,8 @@ import './css/tokens.css'
 
 export default function Profile() {
 
-    const [editMode,toggleEditMode] = React.useState(true);
-    const handleClicktoggleEditMode = () => toggleEditMode(editMode = !editMode)
+    const [editMode,toggleEditMode] = React.useState(false);
+
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
@@ -34,12 +34,13 @@ export default function Profile() {
                     src="src\resources\cursedElon.jpg"
                     sx={{ width: 156, height: 156 }}
                 />
-                <TextField multiline name='ProfileName' variant="standard" disabled={editMode}>Jeff Muskberg</TextField>
-                <TextField multiline name='ProfileStats' variant="standard" disabled={editMode}>Real Name:/nTotal Score:/nMember Since:</TextField>
-                <TextField multiline name='InfoText' variant="standard" disabled={editMode}>Im rich af lol</TextField>
-                <Button variant='outlined' endIcon={<ModeEdit/>} onClick={handleClicktoggleEditMode}>
-                    Edit
-                </Button>
+                <TextField name='ProfileName' size='normal' variant="standard" disabled={editMode}>Jeff Muskberg</TextField>
+                <TextField name='ProfileStats' size='small' multiline rows={3} variant="standard" disabled={editMode}>Real Name:/nTotal Score:/nMember Since:</TextField>
+                <TextField name='InfoText' multiline variant="standard" disabled={editMode}>Im rich af lol</TextField>
+                <ToggleButton  
+                 value="ProfileEdit" selected={editMode} onChange={()=>toggleEditMode(!editMode)}>  
+                    Edit<ModeEdit/>
+                </ToggleButton>
             </Box>
             <Divider/>
             <Grid container spacing={2}>
