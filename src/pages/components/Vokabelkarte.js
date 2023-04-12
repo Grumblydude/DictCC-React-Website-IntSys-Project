@@ -1,19 +1,22 @@
 /*
 Vokabelkarte muss angepasst werden sodass sie einen Input bekommt und dann darauf die werte mapt etc.
 */
-
-
-
-import { Card, CardHeader, CardContent, Divider, IconButton, Typography } from '@mui/material';
+import { Box, Card, CardHeader, CardContent, Divider, IconButton, Typography } from '@mui/material';
 import { Delete, Share, Edit, Favorite } from '@mui/icons-material';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
-import { useState } from 'react';
-import { Dialog} from '@mui/material';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { Component, useState } from 'react';
+import { Dialog } from '@mui/material';
 import ChoiceCards from './ChoiceCards';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-export default function Vokabelkarte() {
+import '../css/colors.module.css'
+import '../css/typography.module.css'
+import '../css/theme.css'
+import '../css/tokens.css'
+
+export default function Vokabelkarte(props) {
     const [open, setOpen] = useState(false);
 
     const theme = useTheme();
@@ -27,27 +30,47 @@ export default function Vokabelkarte() {
         setOpen(false);
     };
 
+    const [isLiked, setIsLiked] = useState(false);
+
+    const handleClick = () => {
+      setIsLiked(!isLiked);
+    };
+
     return (
         <Card sx={{ width: 202, height: 216 }}>
+            <Box sx={{borderTop: '3px solid orange', width: '100%', height: 0}} />
             <CardHeader
-                title={<Typography fontSize={16} align="center">Card Name + Second Row </Typography>}
-                sx={{ paddingBottom: 0, marginBottom: 0 }}
+                title={
+                    <Typography
+                        fontSize={16}
+                        align="center"
+                        sx={{
+                            width: '170px',
+                            //height: '45px',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
+                        }}
+                    >
+                        {props.name}
+                    </Typography>}
+                sx={{ paddingBottom: 1, marginBottom: 0 }}
             />
             <Divider />
-            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                 <Typography fontSize={14} align="center" sx={{ marginTop: -1, marginBottom: 1 }}>
                     50/500
                 </Typography>
-                <IconButton onClick={handleOpen} sx={{ marginBottom: 2 }}>
+                <IconButton onClick={handleOpen} sx={{ marginBottom: 3 }}>
                     <PlayArrowOutlinedIcon fontSize='large' />
                 </IconButton>
                 <Dialog open={open} onClose={handleClose} maxWidth="xl">
                     <ChoiceCards></ChoiceCards>
                 </Dialog>
 
-                <div sx={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+                <div sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'space-around', width: '100%', padding: '0px 0' }}>
                     <IconButton>
-                        <Delete />
+                        <Delete onClick={props.onDelete}/>
                     </IconButton>
                     <IconButton>
                         <Share />
@@ -55,8 +78,8 @@ export default function Vokabelkarte() {
                     <IconButton>
                         <Edit />
                     </IconButton>
-                    <IconButton>
-                        <Favorite />
+                    <IconButton onClick={handleClick}>
+                        {isLiked ? <Favorite /> : <FavoriteBorderOutlinedIcon />}
                     </IconButton>
                 </div>
             </CardContent>

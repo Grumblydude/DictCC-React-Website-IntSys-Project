@@ -10,6 +10,11 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 
+import '../css/colors.module.css'
+import '../css/typography.module.css'
+import '../css/theme.css'
+import '../css/tokens.css'
+
 export default function Translator() {
 
   const examples = require("./examples");
@@ -163,7 +168,6 @@ export default function Translator() {
           <Card sx={{ marginTop: '3rem' }}>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container>
-
                 <Grid item xs={12}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Tabs
@@ -269,9 +273,7 @@ export default function Translator() {
             {showAccordion && ( // render cards if showCards is true
 
               <Paper elevation={0}>
-                <Grid container spacing={0.5} backgroundColor="lightgrey">
-                  <Grid item xs={12}>
-                  </Grid>
+                <Grid container spacing={0.5} backgroundColor="lightGrey"> 
                   <Grid item xs={12}>
                     <Accordion>
                       <AccordionSummary

@@ -4,6 +4,11 @@ import Appbar from './components/Appbar';
 import { Container } from '@mui/system';
 import {Typography } from '@mui/material';
 
+import './css/colors.module.css'
+import './css/typography.module.css'
+import './css/theme.css'
+import './css/tokens.css'
+
 function Community() {
 
     return (

@@ -12,7 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink } from 'react-router-dom';
+
+
+import '../css/colors.module.css'
+import '../css/typography.module.css'
+import '../css/theme.css'
+import '../css/tokens.css'
 import './Appbarstyles.css';
+
 const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'Login'];
 const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
 
@@ -92,7 +99,6 @@ return (
                 <Typography textAlign="center">
                   <NavLink
                     to={"/" + page}
-                    exact
                     activeClassName="active"
                     style={{ textDecoration: "none"}}
                   >
@@ -130,7 +136,6 @@ return (
               sx={{ my: 2, color: 'black', display: 'block' }}>
               <NavLink
                 to={"/" + page}
-                exact
                 activeClassName="active"
                 style={{ textDecoration: "none"}}
               >

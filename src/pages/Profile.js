@@ -8,6 +8,11 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { ModeEdit } from '@mui/icons-material';
 
+import './css/colors.module.css'
+import './css/typography.module.css'
+import './css/theme.css'
+import './css/tokens.css'
+
 export default function Profile() {
 
     const [editMode,toggleEditMode] = React.useState(true);
