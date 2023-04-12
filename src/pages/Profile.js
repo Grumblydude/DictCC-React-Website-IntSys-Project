@@ -14,6 +14,11 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { ModeEdit } from '@mui/icons-material';
 
+import './css/colors.module.css'
+import './css/typography.module.css'
+import './css/theme.css'
+import './css/tokens.css'
+
 export default function Profile() {
     const [editMode,toggleEditMode] = React.useState(true);
     const handleClicktoggleEditMode = () => toggleEditMode(editMode = !editMode)

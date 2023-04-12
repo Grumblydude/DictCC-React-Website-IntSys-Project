@@ -8,6 +8,11 @@ import LogIn from './pages/LogIn';
 import Profile from './pages/Profile';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import './pages/css/colors.module.css'
+import './pages/css/typography.module.css'
+import './pages/css/theme.css'
+import './pages/css/tokens.css'
+
 {/*This is the default theme*/}
 const theme = createTheme({
   palette: {
