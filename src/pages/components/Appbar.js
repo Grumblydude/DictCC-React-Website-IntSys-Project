@@ -16,13 +16,15 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
-
+import { useContext } from 'react';
+import { MyContext } from '../MyProvider';
 
 import '../css/colors.module.css'
 import '../css/typography.module.css'
 import '../css/theme.css'
 import '../css/tokens.css'
 import './Appbarstyles.css';
+import Profile from '../Profile';
 
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon/> },
@@ -36,8 +38,8 @@ const settings = ['Profile', 'Dashboard', 'LogIn', 'Logout'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [loggedIn, setLoggedIn] = React.useState(false)
   
+  const [loggedIn, setLoggedIn] = useContext(MyContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -184,15 +186,33 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key="LogIn" onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
-                    <Link style={{ textDecoration: "none", color: "black" }} to={setting}>
-                      {setting}
+                    <Link style={{ textDecoration: "none", color: "black" }} to="LogIn">
+                      Log In
                     </Link>
                   </Typography>
                 </MenuItem>
-              ))}
+                <MenuItem key="SignIn" onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: "none", color: "black" }} to="SignIn">
+                      Log In
+                    </Link>
+                  </Typography>
+                </MenuItem>
+                <MenuItem key="Profile" onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: "none", color: "black" }} to="Profile">
+                      Profile
+                    </Link>
+                  </Typography>
+                </MenuItem>
+                <MenuItem key="LogOut" onClick={()=>loggedIn(false)}>
+                  <Typography textAlign="center">
+                      Log out
+                  </Typography>
+                </MenuItem>
+
             </Menu>
           </Box>
         </Toolbar>

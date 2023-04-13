@@ -14,7 +14,8 @@ import Profilekarte from './components/Profilekarte';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-
+import { useContext } from 'react';
+import { MyContext } from './MyProvider';
 
 
 import './css/colors.module.css'
@@ -24,7 +25,7 @@ import './css/tokens.css'
 
 export default function Profile() {
 
-    const [loggedIn,setLoggedIn] = React.useState(true)
+    const [loggedIn,setLoggedIn] = useContext(MyContext);
     const [editMode,toggleEditMode] = React.useState(false);
     const [variant, setVariant] = React.useState("standard");
     const handletoggleEditmode = () => {
@@ -80,13 +81,13 @@ export default function Profile() {
 
     const handleNewCardTypeChange = (event) => {
 
-        if(event.target.value == 'INFO'){
+        if(event.target.value === 'INFO'){
             setNewCardType(<Info style={{fontSize:90}}/>)
-        }else if(event.target.value == 'BADGE'){
+        }else if(event.target.value === 'BADGE'){
             setNewCardType(<LocalPolice style={{fontSize:90}}/>)
-        }else if(event.target.value == 'BADGE2'){
+        }else if(event.target.value === 'BADGE2'){
             setNewCardType(<MilitaryTech style={{fontSize:90}}/>)
-        }else if(event.target.value == 'FLAG'){
+        }else if(event.target.value === 'FLAG'){
             setNewCardType(<Flag style={{fontSize:90}}/>)
         }
 
@@ -157,9 +158,6 @@ export default function Profile() {
                     sx={{
                         bgcolor: editMode ? 'green' : 'orange',
                         color: 'white',
-                        '&:hover': {
-                        bgcolor: editMode ? 'darkgreen' : 'darkorange',
-                        },
                       }}
                     >
                     {!editMode ? 
