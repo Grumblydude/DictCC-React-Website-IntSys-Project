@@ -3,17 +3,16 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Card, Divider, Grid, Stack, Typography, Button, IconButton, Dialog, DialogContent, DialogTitle, DialogActions, inputLabelClasses } from '@mui/material';
-import ToggleButton from '@mui/material/Button';
+import ToggleButton from '@mui/material/ToggleButton';
 import Avatar from '@mui/material/Avatar';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { ModeEdit } from '@mui/icons-material';
-import { Icon } from '@mui/material';
-import { icons } from '@mui/icons-material';
+import { LocalPolice,MilitaryTech,Flag,Info } from '@mui/icons-material';
 import { Container, height } from '@mui/system';
 import CardContent from '@mui/material/CardContent';
 import Profilekarte from './components/Profilekarte';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 
 
@@ -25,24 +24,23 @@ import './css/tokens.css'
 
 export default function Profile() {
 
-
-
     const [editMode,toggleEditMode] = React.useState(false);
 
     const [cards, setCards] = useState([
-        { id: 1, name: 'Comes From' },
-        { id: 2, name: "Lives in" },
-        { id: 3, name: "Voting Power" },
-        { id: 4, name: "Contributions" },
-        { id: 5, name: "Speaks" },
-        { id: 6, name: "Speaks" },
-        { id: 7, name: "Speaks" },
-        { id: 8, name: "Total Score" },
-        { id: 9, name: "Member Since" }
+        { id: 1, name: 'Comes From', type:<Flag style={{fontSize:90}}/>},
+        { id: 2, name: "Lives in", type:<Flag style={{fontSize:90}}/>},
+        { id: 3, name: "Voting Power", type:<Info style={{fontSize:90}}/> },
+        { id: 4, name: "Contributions", type:<Info style={{fontSize:90}}/> },
+        { id: 5, name: "Speaks", type:<MilitaryTech style={{fontSize:90}}/> },
+        { id: 6, name: "Speaks", type:<MilitaryTech style={{fontSize:90}}/> },
+        { id: 7, name: "Speaks", type:<LocalPolice style={{fontSize:90}}/> },
+        { id: 8, name: "Total Score", type:<Info style={{fontSize:90}}/> },
+        { id: 9, name: "Member Since", type:<Info style={{fontSize:90}}/> }
     ]);
 
     const [open, setOpen] = useState(false); // dialog open state
     const [newCardName, setNewCardName] = useState(""); // new card name state
+    const [newCardType, setNewCardType] = useState("");
 
     const handleDeleteCard = (cardId) => {
         const newCards = cards.filter((card) => card.id !== cardId);
@@ -60,7 +58,7 @@ export default function Profile() {
 
     const handleAddNewCard = () => {
         const newId = cards.length + 1; // generate new id
-        const newCard = { id: newId, name: newCardName };
+        const newCard = { id: newId, name: newCardName, type: newCardType };
         const newCards = [...cards, newCard];
         setCards(newCards);
         handleClose(); // close the dialog
@@ -69,6 +67,40 @@ export default function Profile() {
     const handleNewCardNameChange = (event) => {
         setNewCardName(event.target.value); // update the new card name
     };
+
+    const handleNewCardTypeChange = (event) => {
+
+        if(event.target.value == 'INFO'){
+            setNewCardType(<Info style={{fontSize:90}}/>)
+        }else if(event.target.value == 'BADGE'){
+            setNewCardType(<LocalPolice style={{fontSize:90}}/>)
+        }else if(event.target.value == 'BADGE2'){
+            setNewCardType(<MilitaryTech style={{fontSize:90}}/>)
+        }else if(event.target.value == 'FLAG'){
+            setNewCardType(<Flag style={{fontSize:90}}/>)
+        }
+
+    };
+
+
+    const mOptions = [
+        {
+          value: 'INFO',
+          label: 'i',
+        },
+        {
+          value: 'BADGE',
+          label: '*',
+        },
+        {
+          value: 'BADGE2',
+          label: '**',
+        },
+        {
+          value: 'FLAG',
+          label: 'Flag',
+        },
+      ];
 
     return(
         <React.Fragment>
@@ -121,6 +153,7 @@ export default function Profile() {
                     <Grid item key={card.id}>
                         <Profilekarte
                             name={card.name}
+                            type={card.type}
                             onDelete={() => handleDeleteCard(card.id)}
                         />
                     </Grid>
@@ -155,6 +188,7 @@ export default function Profile() {
         </Grid>
             
         </Stack>
+
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Add New Card</DialogTitle>
             <DialogContent>
@@ -179,6 +213,22 @@ export default function Profile() {
                         },
                     }}
                 />
+                <TextField
+                    id="CardType"
+                    select
+                    label="Select"
+                    defaultValue="INFO"
+                    helperText="Please select your Card type"
+                    variant="standard"
+                    fullWidth
+                    onChange={handleNewCardTypeChange}
+                    >
+                    {mOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} style={{ color: '#212427' }}>Cancel</Button>
