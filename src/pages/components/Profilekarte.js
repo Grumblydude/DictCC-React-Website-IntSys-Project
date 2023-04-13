@@ -33,14 +33,14 @@ export default function Profilekarte(props) {
     const handleClick = () => {
       setIsLiked(!isLiked);
     };
-
+/*
     const RandomIcon =() => {
         const iconNames = Object.keys(icons);
         const randomIconName = iconNames[Math.floor(Math.random() * iconNames.length)];
         const RandomIconComponent = icons[randomIconName];
         return <Icon component={RandomIconComponent} />;
       }
-
+*/
     return (
         <Card sx={{ width: 202, height: 216 }}>
             <Box sx={{borderTop: '3px solid orange', width: '100%', height: 0}} />

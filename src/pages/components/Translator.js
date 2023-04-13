@@ -9,6 +9,10 @@ import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import axios from "axios";
 
 import '../css/colors.module.css'
 import '../css/typography.module.css'
@@ -21,8 +25,19 @@ export default function Translator() {
 
   const [sourceLanguage, setSourceLanguage] = useState('en');
   const [targetLanguage, setTargetLanguage] = useState('de');
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
   const [showAccordion, setShowAccordion] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
 
   const handleSourceLanguageChange = (event, newValue) => {
     if (newValue !== targetLanguage) {
@@ -45,15 +60,6 @@ export default function Translator() {
       setTargetLanguage(newValue);
     }
   };
-
-  const resultTextColor = () => {
-    if (getTranslation() === "" || getTranslation() === "Result") {
-
-      return "grey"
-    }
-    setShowAccordion(true);
-    return "black"
-  }
 
   const listLanguageValues = () => {
     if (sourceLanguage === "en") {
@@ -161,6 +167,73 @@ export default function Translator() {
     translation = tempInputText;
   }
 
+  //---Translator LibreAPI Functionalities-----------------------------
+
+  const [translation2, setTranslation2] = useState("");
+  const [libreON, setLibreON] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log("Input text before request: " + inputText);
+      if (inputText && inputText.trim() !== "") {
+        axios
+          .post("https://libretranslate.de/translate", {
+            q: inputText,
+            source: sourceLanguage,
+            target: targetLanguage,
+          })
+          .then((response) => {
+            setTranslation2(response.data.translatedText);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [inputText, targetLanguage]);
+
+  const handleInput = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleTranslation = () => {
+    console.log("Input in handletranslate: " + inputText);
+    if ((inputText && inputText.trim() !== "") && libreON) {
+      axios
+        .post("https://libretranslate.de/translate", {
+          q: inputText,
+          source: sourceLanguage,
+          target: targetLanguage,
+        })
+        .then((response) => {
+          setTranslation2(response.data.translatedText);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const handleNormalTranslator = () => {
+    setLibreON(false);
+    handleCloseMenu();
+  };
+
+  const handleLibreAPI = () => {
+    setLibreON(true);
+    handleCloseMenu();
+  };
+  //---END OF: Translator LibreAPI Functionalities-----------------------------
+
+  const resultTextColor = () => {
+    if (getTranslation() === "Result" && (!libreON)) {
+
+      return "grey"
+    }
+    setShowAccordion(true);
+    return "black"
+  }
   return (
     <>
       <Box>
@@ -175,7 +248,7 @@ export default function Translator() {
                       onChange={handleSourceLanguageChange}
                       variant="scrollable"
                       scrollButtons="auto"
-                      sx={{ flexGrow: 0.595, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
+                      sx={{ flexGrow: 0.6325, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
                       TabIndicatorProps={{
                         style: {
                           backgroundColor: "#FF8E13"
@@ -207,7 +280,20 @@ export default function Translator() {
                       <Tab label="German" value="de" />
                     </Tabs>
                     <Typography variant="h6" component="span" sx={{ display: 'flex', alignItems: 'center', marginX: 1.5 }}>
-                      <SettingsOutlinedIcon></SettingsOutlinedIcon>
+                      <IconButton onClick={handleOpenMenu}>
+                        <SettingsOutlinedIcon></SettingsOutlinedIcon>
+                      </IconButton>
+                      <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleCloseMenu}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                        getContentAnchorEl={null}
+                      >
+                        <MenuItem onClick={handleNormalTranslator}>Normal Translator</MenuItem>
+                        <MenuItem onClick={handleLibreAPI}>Libre API</MenuItem>
+                      </Menu>
                     </Typography>
                   </Box>
 
@@ -241,7 +327,13 @@ export default function Translator() {
                           value={inputText}
                         />
                       )}
-                      onChange={(event, value) => setInputText(value)} //inputtext muss sich aktualisieren wenn 
+                      onChange={(event, value) => {
+                        if (value === null) {
+                          setInputText(event.target.value);
+                        } else {
+                          setInputText(value);
+                        }
+                      }} 
                     />
                   </Box>
                 </Grid>
@@ -258,13 +350,18 @@ export default function Translator() {
                         color: resultTextColor
                       }}
                     >
-                      {getTranslation()}
+                      {libreON ? translation2 : getTranslation()}
                     </Typography>
                   </Box>
                 </Grid>
               </Grid>
             </Box>
           </Card>
+          {libreON &&
+            <Button variant="contained" onClick={handleTranslation}>
+              Translate with Libre
+            </Button>
+          }
         </Container>
       </Box>
       <Box padding={2}>
@@ -273,7 +370,7 @@ export default function Translator() {
             {showAccordion && ( // render cards if showCards is true
 
               <Paper elevation={0}>
-                <Grid container spacing={0.5} backgroundColor="#FFFBFF"> 
+                <Grid container spacing={0.5} backgroundColor="#FFFBFF">
                   <Grid item xs={12}>
                     <Accordion>
                       <AccordionSummary
