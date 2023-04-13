@@ -7,7 +7,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
 import { ModeEdit } from '@mui/icons-material';
-import { LocalPolice,MilitaryTech,Flag,Info } from '@mui/icons-material';
+import { LocalPolice,MilitaryTech,Flag,Info,Save } from '@mui/icons-material';
 import { Container, height } from '@mui/system';
 import CardContent from '@mui/material/CardContent';
 import Profilekarte from './components/Profilekarte';
@@ -118,7 +118,7 @@ export default function Profile() {
                     <TextField
                     name="ProfileName"
                     variant="standard"
-                    disabled={!editMode}
+                    InputProps={{readOnly: !editMode, style:{fontSize: 25, fontWeight: 600}}}
                     fullWidth
                     defaultValue="Imarichboy(Jeff Muskberg)"
                     />
@@ -126,17 +126,28 @@ export default function Profile() {
                     name="InfoText"
                     multiline
                     variant="standard"
-                    disabled={!editMode}
+                    InputProps={{readOnly: !editMode, disableUnderline: !editMode}}
                     fullWidth
                     defaultValue="Im rich af lol"
                     />
                     <ToggleButton
                     value="ProfileEdit"
+                    color='primary'
                     selected={editMode}
                     onClick={() => toggleEditMode(!editMode)}
+                    sx={{
+                        bgcolor: editMode ? 'green' : 'orange',
+                        color: 'white',
+                        '&:hover': {
+                        bgcolor: editMode ? 'darkgreen' : 'darkorange',
+                        },
+                      }}
                     >
-                    Edit
-                    <ModeEdit />
+                    {!editMode ? 
+                    (<ModeEdit/>)
+                    : (<Save/>)
+                    }
+                    <span style={{ marginLeft: 4 }}>{!editMode ? 'Edit' : 'Save'}</span>
                     </ToggleButton>
                 </Grid>
             </Grid>
@@ -158,6 +169,7 @@ export default function Profile() {
                         />
                     </Grid>
                 ))}
+                {editMode ? (
                 <Grid item>
                     <Card
                         style={{ width: 202, height: 216 }}
@@ -185,10 +197,11 @@ export default function Profile() {
                         </CardContent>
                     </Card>
                 </Grid>
+                ):null}
         </Grid>
-            
+        
         </Stack>
-
+        {editMode ? (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Add New Card</DialogTitle>
             <DialogContent>
@@ -213,6 +226,7 @@ export default function Profile() {
                         },
                     }}
                 />
+        
                 <TextField
                     id="CardType"
                     select
@@ -235,6 +249,7 @@ export default function Profile() {
                 <Button onClick={handleAddNewCard} style={{ color: 'orange' }}>Finish</Button>
             </DialogActions>
             </Dialog>
+        ):null}
         </React.Fragment>
     )
 }
