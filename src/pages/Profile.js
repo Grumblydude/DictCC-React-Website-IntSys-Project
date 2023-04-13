@@ -2,7 +2,7 @@ import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Card, Divider, Grid, Stack, Typography, Button, IconButton, Dialog, DialogContent, DialogTitle, DialogActions, inputLabelClasses } from '@mui/material';
+import { Card, Divider, Grid, Stack, Typography, Button, IconButton, Dialog, DialogContent, DialogTitle, DialogActions, inputLabelClasses, AppBar } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
@@ -24,21 +24,31 @@ import './css/tokens.css'
 
 export default function Profile() {
 
+    const [loggedIn,setLoggedIn] = React.useState(true)
     const [editMode,toggleEditMode] = React.useState(false);
+    const [variant, setVariant] = React.useState("standard");
+    const handletoggleEditmode = () => {
+        toggleEditMode(!editMode)
+        setVariant(editMode ? "standard" : "outlined")
+    }
+    
+    const [profileName, setProfileName] = React.useState("Imarichboy(Jeff Muskberg)")
+    const [profileInfo, setProfileInfo] = React.useState("Im rich af lol")
 
     const [cards, setCards] = useState([
         { id: 1, name: 'Comes From', type:<Flag style={{fontSize:90}}/>},
         { id: 2, name: "Lives in", type:<Flag style={{fontSize:90}}/>},
         { id: 3, name: "Voting Power", type:<Info style={{fontSize:90}}/> },
         { id: 4, name: "Contributions", type:<Info style={{fontSize:90}}/> },
-        { id: 5, name: "Speaks", type:<MilitaryTech style={{fontSize:90}}/> },
-        { id: 6, name: "Speaks", type:<MilitaryTech style={{fontSize:90}}/> },
-        { id: 7, name: "Speaks", type:<LocalPolice style={{fontSize:90}}/> },
+        { id: 5, name: "Speaks German", type:<MilitaryTech style={{fontSize:90}}/> },
+        { id: 6, name: "Speaks English", type:<MilitaryTech style={{fontSize:90}}/> },
+        { id: 7, name: "Speaks Spanish", type:<LocalPolice style={{fontSize:90}}/> },
         { id: 8, name: "Total Score", type:<Info style={{fontSize:90}}/> },
         { id: 9, name: "Member Since", type:<Info style={{fontSize:90}}/> }
     ]);
 
     const [open, setOpen] = useState(false); // dialog open state
+
     const [newCardName, setNewCardName] = useState(""); // new card name state
     const [newCardType, setNewCardType] = useState("");
 
@@ -109,32 +119,41 @@ export default function Profile() {
         <Grid container spacing={2} sx={{ width: '80%', margin: 'auto' }}>
             <Grid item>
                 <Avatar
-                alt="Jeff Muskberg"
+                alt={profileName}
                 src="../resources/cursedElon.jpg"
                 sx={{ width: 210, height: 210 }}
                 />
             </Grid>
                 <Grid item>
+
                     <TextField
                     name="ProfileName"
-                    variant="standard"
-                    InputProps={{readOnly: !editMode, style:{fontSize: 25, fontWeight: 600}}}
+                    variant={variant}
+                    InputProps={{required:true, readOnly: !editMode, style:{fontSize: 25, fontWeight: 600}}}
                     fullWidth
-                    defaultValue="Imarichboy(Jeff Muskberg)"
+                    placeholder="Profilename(Real Name)"
+                    defaultValue={profileName}
+                    onChange ={(event) => {
+                        setProfileName(event.target.value);
+                      }}
                     />
                     <TextField
                     name="InfoText"
                     multiline
-                    variant="standard"
+                    variant={variant}
                     InputProps={{readOnly: !editMode, disableUnderline: !editMode}}
                     fullWidth
-                    defaultValue="Im rich af lol"
+                    placeholder="Present yourself"
+                    defaultValue={profileInfo}
+                    onChange ={(event) => {
+                        setProfileInfo(event.target.value);
+                      }}
                     />
-                    <ToggleButton
+                    {loggedIn&& <ToggleButton
                     value="ProfileEdit"
                     color='primary'
                     selected={editMode}
-                    onClick={() => toggleEditMode(!editMode)}
+                    onClick={handletoggleEditmode}
                     sx={{
                         bgcolor: editMode ? 'green' : 'orange',
                         color: 'white',
@@ -148,7 +167,7 @@ export default function Profile() {
                     : (<Save/>)
                     }
                     <span style={{ marginLeft: 4 }}>{!editMode ? 'Edit' : 'Save'}</span>
-                    </ToggleButton>
+                    </ToggleButton>}
                 </Grid>
             </Grid>
             <Divider variant='middle'/>

@@ -31,11 +31,13 @@ const pages = [
   { name: 'FAQ', icon: <HelpOutlineOutlinedIcon /> },
 ];
 
-const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
+const settings = ['Profile', 'Dashboard', 'LogIn', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [loggedIn, setLoggedIn] = React.useState(false)
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
