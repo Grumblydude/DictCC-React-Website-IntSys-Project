@@ -9,11 +9,12 @@ import './css/colors.module.css'
 import './css/typography.module.css'
 import './css/theme.css'
 import './css/tokens.css'
+
 function Home() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <div className="Home">
+            <div>
                 <main>
                     <div>
                         <Translator></Translator>

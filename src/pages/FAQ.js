@@ -14,7 +14,7 @@ function FAQ() {
     return (
         <React.Fragment>
         <CssBaseline />
-        <div className="Home">
+        <div>
             <main>
                 <div>
                     <Container>
