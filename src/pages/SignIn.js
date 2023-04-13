@@ -34,6 +34,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -44,6 +45,7 @@ export default function SignUp() {
   };
 
   return (
+    <React.Fragment>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -132,5 +134,6 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+    </React.Fragment>
   );
 }

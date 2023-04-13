@@ -1,7 +1,8 @@
 import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Card, Divider, Grid, Stack } from '@mui/material';
+import { Card, Divider, Grid, Stack, Typography } from '@mui/material';
 import ToggleButton from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Paper from '@mui/material/Paper';
@@ -23,34 +24,77 @@ export default function Profile() {
         padding: theme.spacing(1),
         textAlign: 'left',
         color: theme.palette.text.secondary,
-        height: 210
+        width: 202, 
+        height: 216
       }));
 
     return(
+        <React.Fragment>
+        <CssBaseline />
         <Stack direction="column" padding={15} spacing={2}>
-            <Box>
+        <Grid container spacing={2} sx={{ width: '80%', margin: 'auto' }}>
+            <Grid item>
                 <Avatar
-                    alt="Remy Sharp"
-                    src="src\resources\cursedElon.jpg"
-                    sx={{ width: 156, height: 156 }}
+                alt="Jeff Muskberg"
+                src="../resources/cursedElon.jpg"
+                sx={{ width: 210, height: 210 }}
                 />
-                <TextField name='ProfileName' size='normal' variant="standard" disabled={editMode}>Jeff Muskberg</TextField>
-                <TextField name='ProfileStats' size='small' multiline rows={3} variant="standard" disabled={editMode}>Real Name:/nTotal Score:/nMember Since:</TextField>
-                <TextField name='InfoText' multiline variant="standard" disabled={editMode}>Im rich af lol</TextField>
-                <ToggleButton  
-                 value="ProfileEdit" selected={editMode} onChange={()=>toggleEditMode(!editMode)}>  
-                    Edit<ModeEdit/>
-                </ToggleButton>
-            </Box>
-            <Divider/>
-            <Grid container spacing={2}>
-                <Grid item xs={3}><Item>Comes From</Item></Grid>
-                <Grid item xs={3}><Item>Lives In</Item></Grid>
-                <Grid item xs={3}><Item>Voting Power</Item></Grid> 
-                <Grid item xs={3}><Item>Contributions</Item></Grid>
-                <Grid item xs={3}><Item>Speaks</Item></Grid>
-                <Grid item xs={3}><Item>Speaks</Item></Grid>
+            </Grid>
+                <Grid item>
+                    <TextField
+                    name="ProfileName"
+                    variant="standard"
+                    disabled={!editMode}
+                    fullWidth
+                    defaultValue="Imarichboy(Jeff Muskberg)"
+                    />
+                    <TextField
+                    name="InfoText"
+                    multiline
+                    variant="standard"
+                    disabled={!editMode}
+                    fullWidth
+                    defaultValue="Im rich af lol"
+                    />
+                    <ToggleButton
+                    value="ProfileEdit"
+                    selected={editMode}
+                    onClick={() => toggleEditMode(!editMode)}
+                    >
+                    Edit
+                    <ModeEdit />
+                    </ToggleButton>
+                </Grid>
+            </Grid>
+            <Divider variant='middle'/>
+            <Grid
+                container
+                justifyContent="center"
+                alignItems="flex-start"
+                spacing={4}
+                padding={1}
+                >
+                {[
+                    'Comes From',
+                    'Lives In',
+                    'Voting Power',
+                    'Contributions',
+                    'Speaks',
+                    'Speaks',
+                    'Speaks',
+                    'Total Score',
+                    'Member since',
+                ].map((item) => (
+                    <Grid key={item} item xs={3} spacing={2} padding={2}>
+                        <Card sx={{width: 202, height: 216 }}>
+                            <Box sx={{ p: 2 }}>
+                                <Typography variant="body2">{item}</Typography>
+                            </Box>
+                        </Card>
+                    </Grid>
+                ))}
             </Grid>
         </Stack>
+        </React.Fragment>
     )
 }
