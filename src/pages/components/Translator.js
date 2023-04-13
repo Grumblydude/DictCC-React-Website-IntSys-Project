@@ -248,7 +248,7 @@ export default function Translator() {
                       onChange={handleSourceLanguageChange}
                       variant="scrollable"
                       scrollButtons="auto"
-                      sx={{ flexGrow: 0.6325, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
+                      sx={{ flexGrow: 0.630, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
                       TabIndicatorProps={{
                         style: {
                           backgroundColor: "#FF8E13"
@@ -333,7 +333,7 @@ export default function Translator() {
                         } else {
                           setInputText(value);
                         }
-                      }} 
+                      }}
                     />
                   </Box>
                 </Grid>
@@ -358,7 +358,21 @@ export default function Translator() {
             </Box>
           </Card>
           {libreON &&
-            <Button variant="contained" onClick={handleTranslation}>
+            <Button
+              variant="contained"
+              onClick={handleTranslation}
+              sx={{
+                backgroundColor: "#FFA500",
+                color: "white",
+                marginTop: 1.5,
+                "&:hover": {
+                  backgroundColor: "#FFA500"
+                },
+                "&:active": {
+                  backgroundColor: "#FFA500"
+                }
+              }}
+            >
               Translate with Libre
             </Button>
           }
