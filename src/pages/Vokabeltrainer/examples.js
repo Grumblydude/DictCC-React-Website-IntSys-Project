@@ -1,16 +1,5 @@
 const examples = [
   {
-    value: 'VERYLONGEXAMPLEFORTESTINGPURPOSES',
-    german: 'SEHRLANGESBEISPIELFUERTESTGRUENDE',
-    english: 'VERYLONGEXAMPLEFORTESTINGPURPOSES',
-    GERdefinition: 'Dings damit teste ich lol das ist meine definition',
-    ENdefinition: 'hehe i am testing the definition, is it working????',
-    GERexample: 'The Bee Movie Script',
-    ENexample: 'According to all known laws of aviation, there is no way that a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway. Because bees don’t care what humans think is impossible.Sneakers on the ground. Camera PANS UP to reveal BARRY BENSON’S BEDROOM ANGLE ON: Barry’s hand flipping through different sweaters in his closet. BARRY Yellow black, yellow black, yellow black, yellow black, yellow black, yellow black...oohh, black and yellow... ANGLE ON: Barry wearing the sweater he picked, looking in the mirror. BARRY (CONT’D) Yeah, let’s shake it up a little. He picks the black and yellow one. He then goes to the sink, takes the top off a CONTAINER OF HONEY, and puts some honey into his hair. He squirts some in his mouth and gargles. Then he takes the lid off the bottle, and rolls some on like deodorant. CUT TO: INT. BENSON HOUSE KITCHEN - CONTINUOUS Barry’s mother, JANET BENSON, yells up at Barry. JANET BENSON Barry, breakfast is ready! CUT TO: The Bee Movie',
-    ENsimilars: [""],
-    GERsimilars: [""]
-  },
-  {
     value: 'hello',
     german: 'hallo',
     english: 'hello',
@@ -262,6 +251,193 @@ const examples = [
     ENexample: 'I am a computer scientist working on a new software project.',
     ENsimilars: ['software engineer', 'programmer', 'developer', 'IT specialist', 'computer engineer', 'data scientist', 'web developer', 'systems analyst', 'network administrator', 'cybersecurity analyst'],
     GERsimilars: ['Softwareentwickler', 'Programmierer', 'IT-Spezialist', 'Datenwissenschaftler', 'Webentwickler', 'Systemanalytiker', 'Netzwerkadministrator', 'Cybersicherheitsanalytiker']
+  },
+  {
+    value: 'television',
+    german: 'Fernseher',
+    english: 'television',
+    GERdefinition: 'ein Gerät zum Empfang von Fernsehsendungen',
+    ENdefinition: 'an electronic device used for viewing television broadcasts',
+    GERexample: 'Ich schaue gerne fern auf meinem Fernseher.',
+    ENexample: 'I like to watch TV on my television.',
+    ENsimilars: ['monitor', 'screen', 'display', 'projector', 'cable box', 'smart TV', 'streaming device', 'DVD player'],
+    GERsimilars: ['Computermonitor', 'Beamer', 'Tablet', 'Smartphone', 'Laptop', 'Radiogerät', 'Satellitenreceiver']
+  },
+  {
+    value: 'chair',
+    german: 'Stuhl',
+    english: 'chair',
+    GERdefinition: 'ein Möbelstück zum Sitzen',
+    ENdefinition: 'a piece of furniture for sitting',
+    GERexample: 'Ich setze mich auf den Stuhl, um am Schreibtisch zu arbeiten.',
+    ENexample: 'I sit on the chair to work at my desk.',
+    ENsimilars: ['sofa', 'bench', 'stool', 'ottoman', 'recliner', 'rocking chair', 'office chair', 'bean bag chair'],
+    GERsimilars: ['Sofa', 'Bank', 'Hocker', 'Sessel', 'Schaukelstuhl', 'Bürostuhl', 'Hängesitz', 'Liegestuhl']
+  },
+  {
+    value: 'pencil',
+    german: 'Bleistift',
+    english: 'pencil',
+    GERdefinition: 'ein Schreibgerät zum Zeichnen und Schreiben',
+    ENdefinition: 'a writing and drawing instrument',
+    GERexample: 'Ich benutze meinen Bleistift, um meine Hausaufgaben zu erledigen.',
+    ENexample: 'I use my pencil to do my homework.',
+    ENsimilars: ['pen', 'marker', 'crayon', 'chalk', 'charcoal', 'highlighter', 'stylus', 'sharpie'],
+    GERsimilars: ['Kugelschreiber', 'Filzstift', 'Tintenroller', 'Füller', 'Radiergummi', 'Textmarker', 'Kreide', 'Kohlestift']
+  },
+  {
+    value: 'shoe',
+    german: 'Schuh',
+    english: 'shoe',
+    GERdefinition: 'ein Kleidungsstück, das den Fuß bedeckt und schützt',
+    ENdefinition: 'an item of clothing that covers and protects the foot',
+    GERexample: 'Ich ziehe meine Schuhe an, bevor ich das Haus verlasse.',
+    ENexample: 'I put on my shoes before leaving the house.',
+    ENsimilars: ['sneaker', 'boot', 'sandal', 'slipper', 'loafer', 'oxford', 'flip-flop', 'wedge'],
+    GERsimilars: ['Turnschuhe', 'Stiefel', 'Sandalen', 'Hausschuhe', 'Mokassins', 'Halbschuhe', 'Zehentrenner', 'Keilsandaletten']
+  },
+  {
+    value: 'snake',
+    german: 'Schlange',
+    english: 'snake',
+    GERdefinition: 'ein langes, schuppiges, beinloses Reptil',
+    ENdefinition: 'a long, scaly, legless reptile',
+    GERexample: 'Ich habe Angst vor Schlangen.',
+    ENexample: 'I am afraid of snakes.',
+    ENsimilars: ['lizard', 'gecko', 'iguana', 'crocodile', 'alligator', 'turtle', 'tortoise', 'worm', 'slug'],
+    GERsimilars: ['Echse', 'Gecko', 'Krokodil', 'Schildkröte', 'Wurm', 'Schnecke', 'Kröte', 'Frosch']
+  },
+  {
+    value: 'dictionary',
+    german: 'Wörterbuch',
+    english: 'dictionary',
+    GERdefinition: 'ein Nachschlagewerk mit alphabetisch geordneten Wörtern und ihren Bedeutungen',
+    ENdefinition: 'a reference work with words listed alphabetically and their meanings',
+    GERexample: 'Ich benutze mein Wörterbuch, um neue Wörter zu lernen.',
+    ENexample: 'I use my dictionary to learn new words.',
+    ENsimilars: ['thesaurus', 'encyclopedia', 'glossary', 'lexicon', 'atlas', 'almanac', 'directory', 'index'],
+    GERsimilars: ['Thesaurus', 'Enzyklopädie', 'Glossar', 'Lexikon', 'Atlas', 'Verzeichnis', 'Index']
+  },
+  {
+    value: 'priest',
+    german: 'Priester',
+    english: 'priest',
+    GERdefinition: 'ein Geistlicher, der in einer religiösen Gemeinschaft tätig ist',
+    ENdefinition: 'a religious leader who serves in a religious community',
+    GERexample: 'Der Priester hat die Messe geleitet.',
+    ENexample: 'The priest led the Mass.',
+    ENsimilars: ['minister', 'pastor', 'clergyman', 'preacher', 'rabbi', 'imam', 'monk', 'nun'],
+    GERsimilars: ['Pfarrer', 'Geistlicher', 'Theologe', 'Rabbiner', 'Imam', 'Mönch', 'Nonne']
+  },
+  {
+    value: 'wall',
+    german: 'Mauer',
+    english: 'wall',
+    GERdefinition: 'eine vertikale Struktur aus Stein oder Ziegeln, die dazu dient, einen Raum zu umgeben oder zu teilen',
+    ENdefinition: 'a vertical structure made of stone or bricks that serves to enclose or divide a space',
+    GERexample: 'Die Mauer um das Schloss war sehr hoch.',
+    ENexample: 'The wall around the castle was very tall.',
+    ENsimilars: ['fence', 'barrier', 'partition', 'screen', 'divider', 'hedge', 'rampart', 'embankment'],
+    GERsimilars: ['Zaun', 'Barriere', 'Trennwand', 'Bildschirm', 'Teiler', 'Hecke', 'Wall', 'Böschung']
+  },
+  {
+    value: 'rhombus',
+    german: 'Raute',
+    english: 'rhombus',
+    GERdefinition: 'ein Parallelogramm mit vier gleich langen Seiten',
+    ENdefinition: 'a parallelogram with four equal sides',
+    GERexample: 'Ein Würfel besteht aus sechs Quadraten und zwölf Rauten.',
+    ENexample: 'A cube is made up of six squares and twelve rhombuses.',
+    ENsimilars: ['parallelogram', 'diamond', 'kite', 'trapezium', 'quadrilateral'],
+    GERsimilars: ['Parallelogramm', 'Diamant', 'Drachen', 'Trapez', 'Viereck']
+  },
+  {
+    value: 'queue',
+    german: 'Schlange',
+    english: 'queue',
+    GERdefinition: 'eine Reihe von Personen oder Dingen, die darauf warten, bedient zu werden',
+    ENdefinition: 'a line of people or things waiting to be served',
+    GERexample: 'Ich musste eine Stunde in der Schlange stehen, um meine Fahrkarte zu kaufen.',
+    ENexample: 'I had to wait in line for an hour to buy my ticket.',
+    ENsimilars: ['line', 'row', 'queueing', 'waiting', 'standby'],
+    GERsimilars: ['Reihe', 'Schlange stehen', 'Warten', 'Warteschlange', 'Anstehen']
+  },
+  {
+    value: 'quiet',
+    german: 'ruhig',
+    english: 'quiet',
+    GERdefinition: 'ohne Lärm oder Störung',
+    ENdefinition: 'without noise or disturbance',
+    GERexample: 'Bitte sei leise, die anderen schlafen schon.',
+    ENexample: 'Please be quiet, the others are already sleeping.',
+    ENsimilars: ['silent', 'calm', 'peaceful', 'serene', 'tranquil'],
+    GERsimilars: ['still', 'friedlich', 'gelassen', 'entspannt', 'ruhig und gelassen']
+  },
+  {
+    value: 'quickscope',
+    german: 'Schnellzielen',
+    english: 'quickscope',
+    GERdefinition: 'eine Technik beim Videospiel, bei der ein Spieler schnell mit einem Scharfschützengewehr zielt und schießt, um einen Gegner zu besiegen',
+    ENdefinition: 'a technique in video games where a player quickly aims and shoots with a sniper rifle to defeat an opponent',
+    GERexample: 'Ich habe den Feind mit einem perfekten Schnellzielen besiegt.',
+    ENexample: 'I defeated the enemy with a perfect quickscope.',
+    ENsimilars: ['headshot', 'sniper', 'first-person shooter', 'gaming'],
+    GERsimilars: ['Scharfschütze', 'Ego-Shooter', 'Computerspiel', 'Gaming']
+  },
+  {
+    value: 'Aphex Twin',
+    german: 'Aphex Twin',
+    english: 'Aphex Twin',
+    GERdefinition: 'ein englischer Musiker und Produzent elektronischer Musik, bekannt für seine experimentelle Musik und seine Verwendung von Pseudonymen',
+    ENdefinition: 'an English musician and producer of electronic music, known for his experimental music and use of pseudonyms',
+    GERexample: 'Ich liebe Aphex Twins Musik, sie ist so anders als alles andere da draußen.',
+    ENexample: 'I love Aphex Twins music, it is so different from anything else out there.',
+    ENsimilars: ['ambient music', 'IDM', 'electronic dance music', 'experimental music'],
+    GERsimilars: ['Ambient-Musik', 'IDM', 'Elektronische Tanzmusik', 'Experimentelle Musik']
+  },
+  {
+    value: 'Death Grips',
+    german: 'Death Grips',
+    english: 'Death Grips',
+    GERdefinition: 'eine experimentelle Hip-Hop-Band aus Kalifornien, bekannt für ihre aggressive Musik und ihre unberechenbaren Auftritte',
+    ENdefinition: 'an experimental hip-hop band from California, known for their aggressive music and unpredictable performances',
+    GERexample: 'Ich habe Death Grips einmal live gesehen, und es war eine der intensivsten Konzerterfahrungen meines Lebens.',
+    ENexample: 'I saw Death Grips live once, and it was one of the most intense concert experiences of my life.',
+    ENsimilars: ['industrial music', 'noise rap', 'punk rap', 'experimental hip-hop'],
+    GERsimilars: ['Industriemusik', 'Noiserap', 'Punk-Rap', 'Experimenteller Hip-Hop']
+  },
+  {
+    value: 'Sigma',
+    german: 'Sigma',
+    english: 'Sigma',
+    GERdefinition: 'ein griechischer Buchstabe und Symbol in der Mathematik, der oft verwendet wird, um Summen und Reihen auszudrücken',
+    ENdefinition: 'a Greek letter and symbol in mathematics that is often used to express sums and series',
+    GERexample: 'Die Summe der ersten zehn natürlichen Zahlen kann mit dem Sigma-Symbol ausgedrückt werden.',
+    ENexample: 'The sum of the first ten natural numbers can be expressed using the Sigma symbol.',
+    ENsimilars: ['integral', 'calculus', 'mathematical notation', 'equation'],
+    GERsimilars: ['Integral', 'Analysis', 'Mathematische Notation', 'Gleichung']
+  },
+  {
+    value: 'swabian',
+    german: 'Schwäbisch',
+    english: 'Swabian',
+    GERdefinition: 'eine Dialektgruppe des Deutschen, die in Schwaben und Teilen von Baden-Württemberg gesprochen wird',
+    ENdefinition: 'a dialect group of the German language spoken in Swabia and parts of Baden-Württemberg',
+    GERexample: 'Ich liebe den schwäbischen Dialekt, es ist so charmant und einzigartig.',
+    ENexample: 'I love the Swabian dialect, it is so charming and unique.',
+    ENsimilars: ['dialect', 'language', 'regional language', 'German'],
+    GERsimilars: ['Dialekt', 'Sprache', 'Regionalsprache', 'Deutsch']
+  },
+  {
+    value: 'sweat',
+    german: 'Schweiß',
+    english: 'sweat',
+    GERdefinition: 'eine Flüssigkeit, die von den Schweißdrüsen der Haut abgesondert wird und dazu dient, den Körper zu kühlen und Giftstoffe auszuscheiden',
+    ENdefinition: 'a fluid secreted by the sweat glands of the skin, which serves to cool the body and excrete toxins',
+    GERexample: 'Ich habe nach dem Training viel Schweiß auf meinem T-Shirt.',
+    ENexample: 'I have a lot of sweat on my shirt after working out.',
+    ENsimilars: ['perspiration', 'sweat glands', 'body odor', 'dehydration'],
+    GERsimilars: ['Schwitzen', 'Schweißdrüsen', 'Körpergeruch', 'Dehydrierung']
   }
   // add more words here...
 ];
