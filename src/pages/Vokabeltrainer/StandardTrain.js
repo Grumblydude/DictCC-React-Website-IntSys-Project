@@ -59,6 +59,10 @@ function StandardTrain() {
     };
 
     const handleNext = () => {
+        const isCorrect = inputValue.toLowerCase() === (sourceLanguage === 'en' ? currentWord.german.toLowerCase() : currentWord.english.toLowerCase());
+        if (isCorrect) {
+            setCorrectCount(correctCount + 1);
+        }
         setCurrentWord(getRandomWord());
         setInputValue('');
     };

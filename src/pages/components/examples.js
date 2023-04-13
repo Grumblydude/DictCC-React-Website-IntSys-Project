@@ -353,7 +353,7 @@ const examples = [
   },
   {
     value: 'queue',
-    german: 'Schlange',
+    german: 'Warteschlange',
     english: 'queue',
     GERdefinition: 'eine Reihe von Personen oder Dingen, die darauf warten, bedient zu werden',
     ENdefinition: 'a line of people or things waiting to be served',
