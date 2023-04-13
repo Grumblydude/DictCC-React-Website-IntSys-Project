@@ -59,7 +59,7 @@ export default function Vokabelkarte(props) {
             <Divider />
             <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                 <Typography fontSize={14} align="center" sx={{ marginTop: -1, marginBottom: 1 }}>
-                    50/500
+                    0/20
                 </Typography>
                 <IconButton onClick={handleOpen} sx={{fontSize: "3.2rem", marginBottom: 2 }}>
                     <PlayArrowOutlinedIcon fontSize='inherit' />

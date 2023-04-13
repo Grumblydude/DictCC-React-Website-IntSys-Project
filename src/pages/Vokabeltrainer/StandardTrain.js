@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import examples from './examples';
 import TrainDialog from './TrainDialog';
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import FinishDialog from './FinishDialog';
 
 function StandardTrain() {
 
@@ -14,7 +15,8 @@ function StandardTrain() {
     const [targetLanguage, setTargetLanguage] = useState('');
     const [inputColor, setInputColor] = useState('');
     const [correctCount, setCorrectCount] = useState(0);
-
+    const [wrongCount, setWrongCount] = useState(0);
+    const [count, setCount] = useState(0);
     const getRandomWord = () => {
         const words = sourceLanguage === 'en' ? examples.filter(example => example.english) : examples.filter(example => example.german);
         const randomIndex = Math.floor(Math.random() * words.length);
@@ -33,10 +35,13 @@ function StandardTrain() {
     const handleCheck = () => {
         const isCorrect = inputValue.toLowerCase() === (sourceLanguage === 'en' ? currentWord.german.toLowerCase() : currentWord.english.toLowerCase());
         if (isCorrect) {
+            setCount(count + 1);
             setCorrectCount(correctCount + 1);
             setInputColor('green');
         } else {
             setInputColor('red');
+            setCount(count + 1);
+            setWrongCount(wrongCount + 1);
         }
         setTimeout(() => {
             setCurrentWord(getRandomWord());
@@ -61,7 +66,11 @@ function StandardTrain() {
     const handleNext = () => {
         const isCorrect = inputValue.toLowerCase() === (sourceLanguage === 'en' ? currentWord.german.toLowerCase() : currentWord.english.toLowerCase());
         if (isCorrect) {
+            setCount(count + 1);
             setCorrectCount(correctCount + 1);
+        } else{
+            setCount(count + 1);
+            setWrongCount(wrongCount + 1);
         }
         setCurrentWord(getRandomWord());
         setInputValue('');
@@ -85,11 +94,19 @@ function StandardTrain() {
                     minHeight: "50vh",
                 }}
             >
+                {(count === 20) &&
+                <FinishDialog
+                    corrects={correctCount}
+                    wrongs={wrongCount}
+                    onLanguageChange={handleLanguageChange}
+                />
+                }
                 <TrainDialog
                     sourceLanguage={sourceLanguage}
                     targetLanguage={targetLanguage}
                     onLanguageChange={handleLanguageChange}
                 />
+
                 <Typography
                     variant="h2"
                     style={{
@@ -99,7 +116,7 @@ function StandardTrain() {
                         marginTop: 30,
                     }}
                 >
-                    Vokabeltrainer
+                     {sourceLanguage === "en" ? "Vocab Training" : "Vokabeltrainer"}
                 </Typography>
                 <Typography
                     sx={{
@@ -110,7 +127,7 @@ function StandardTrain() {
                         marginBottom: 5,
                     }}
                 >
-                    {"Currently: " + sourceLanguage + " to " + targetLanguage}
+                     {sourceLanguage === "en" ? "EN - DE" : "DE - EN"}
                 </Typography>
                 
                 {currentWord && (
@@ -137,7 +154,7 @@ function StandardTrain() {
                         >
                             <Box
                                 sx={{
-                                    width: `${(correctCount / 20) * 100}%`, // dynamically set width based on correctCount
+                                    width: `${(count / 20) * 100}%`, // dynamically set width based on correctCount
                                     height: "100%",
                                     backgroundColor: "#FFA500",
                                 }}
@@ -193,7 +210,7 @@ function StandardTrain() {
                                     }
                                 }}
                             >
-                                Check
+                                 {sourceLanguage === "en" ? "Check" : "Prüfen"}
                             </Button>
                             <Button
                                 variant="contained"
@@ -210,7 +227,7 @@ function StandardTrain() {
                                     }
                                 }}
                             >
-                                Next
+                                 {sourceLanguage === "en" ? "Next" : "Weiter"}
                             </Button>
                         </div>
                         <Typography sx={{ marginTop: 2 }}>
@@ -234,7 +251,7 @@ function StandardTrain() {
                         }
                     }}
                 >
-                    Leave
+                     {sourceLanguage === "en" ? "Leave" : "Verlassen"}
                 </Button>
                 <Button
                     variant="contained"
@@ -256,7 +273,7 @@ function StandardTrain() {
                         }
                     }}
                 >
-                    Switch to {sourceLanguage === "en" ? "German" : "English"}
+                    {sourceLanguage === "en" ? "Switch to German" : "Wechsel auf Englisch"}
                 </Button>
             </Container>
         </React.Fragment>

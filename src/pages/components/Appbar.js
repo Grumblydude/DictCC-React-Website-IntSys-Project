@@ -27,7 +27,7 @@ import './Appbarstyles.css';
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon/> },
   { name: 'Vokabeltrainer', icon: <LayersOutlinedIcon /> },
-  { name: 'Community', icon: <GroupOutlinedIcon /> },
+  /*{ name: 'Community', icon: <GroupOutlinedIcon /> },*/
   { name: 'FAQ', icon: <HelpOutlineOutlinedIcon /> },
 ];
 
