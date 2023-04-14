@@ -121,7 +121,7 @@ export default function Profile() {
                 <Avatar
                 alt={profileName}
                 src="../resources/cursedElon.jpg"
-                sx={{ width: 210, height: 210 }}
+                sx={{ width: 210, height: 210, bgcolor: "orange"}}
                 />
             </Grid>
                 <Grid item>
