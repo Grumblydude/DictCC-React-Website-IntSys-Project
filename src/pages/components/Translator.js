@@ -1,6 +1,12 @@
+
+/* The main Translator
+//@author Denis Paskevic
+//This code is far from clean. Whoever uses this, should know that styling with mui should be done through the style functionalities and rarely used through sx.
+//The whole project was a bit rushed at the end due to other exams.
+*/
+
 /*TODO:
 Fix the bug where autocomplete doesnt update the value. However this low prio since the other features need to be installed.
-
 */
 
 import { Autocomplete, Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
@@ -9,7 +15,6 @@ import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import axios from "axios";
@@ -28,17 +33,17 @@ export default function Translator() {
   const [inputText, setInputText] = useState("");
   const [showAccordion, setShowAccordion] = useState(false);
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null); //for tooltip in settings
 
-  const handleOpenMenu = (event) => {
+  const handleOpenMenu = (event) => { //for tooltip in settings
     setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = () => { //for tooltip in settings
     setAnchorEl(null);
   };
 
-
+  //Changes the languages
   const handleSourceLanguageChange = (event, newValue) => {
     if (newValue !== targetLanguage) {
       swapLanguages();
@@ -67,7 +72,7 @@ export default function Translator() {
     }
     return examples.map((values) => values.german);
   }
-  //Start getter for values------------------------------------------------ Redundant shitty codestyle bcuz no time and no experience------------------------------------------
+  //Start getter for values------------------------------------------------ Redundant extremely bad codestyle. Not enough time was left and i was tired. This can be done better.------------------------------------------
   let translation = "Result";
   const getTranslation = () => {
 
@@ -158,7 +163,7 @@ export default function Translator() {
     }
     return wordArray;
   }
-  //------------------------------------------------------------------------------------------
+
   function swapLanguages() {
     setSourceLanguage(targetLanguage);
     setTargetLanguage(sourceLanguage);
@@ -166,9 +171,12 @@ export default function Translator() {
     setInputText(translation);
     translation = tempInputText;
   }
+  //End of redundant code------------------------------------------------------------------------------------------
+
 
   //---Translator LibreAPI Functionalities-----------------------------
-
+  //While i was not able to find a lexicon api. I found the free open source LibreTranslate API. It sends a POST request to their webpage and receives the translation.
+  //
   const [translation2, setTranslation2] = useState("");
   const [libreON, setLibreON] = useState(false);
   useEffect(() => {
@@ -226,6 +234,7 @@ export default function Translator() {
   };
   //---END OF: Translator LibreAPI Functionalities-----------------------------
 
+  //Small roundabout for styling
   const resultTextColor = () => {
     if (getTranslation() === "Result" && (!libreON)) {
 
@@ -234,6 +243,7 @@ export default function Translator() {
     setShowAccordion(true);
     return "black"
   }
+
   return (
     <>
       <Box>

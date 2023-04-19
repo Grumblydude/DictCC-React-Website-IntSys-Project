@@ -1,3 +1,8 @@
+
+// The Dialog which pops up once the training is finished. Currently only shows a count of the numbers and a piechart
+//@author Denis Paskevic
+
+
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useState } from 'react';

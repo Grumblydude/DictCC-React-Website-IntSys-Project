@@ -1,3 +1,8 @@
+//@author Denis Paskevic
+
+/* We were not able to find a free api which supported a lexicon with a vocabulary. So i created an Array of examples to show the functionalities.
+*/
+
 const examples = [
   {
     value: 'hello',

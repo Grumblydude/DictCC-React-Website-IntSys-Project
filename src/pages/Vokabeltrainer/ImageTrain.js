@@ -13,7 +13,7 @@ function ImageTrain() {
             <main>
                 <div>
                     <Container>
-                        <Typography variant='h2' align='center'>ImageTrain Page</Typography>
+                        <Typography variant='h2' align='center'>This Training is not implemented! Only Standard Trainer is currently usable</Typography>
                     </Container>
                 </div>
             </main>

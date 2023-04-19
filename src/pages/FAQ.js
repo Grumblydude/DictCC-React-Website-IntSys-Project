@@ -1,3 +1,5 @@
+//Small FAQ as an Accordion.
+//@author Denis Paskevic
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/system';

@@ -1,3 +1,6 @@
+//The Choicecard Component is the Dialog which pops up when a user clicks on a Card in the Vocab Trainer
+//@author Denis Paskevic
+
 import { Box, Card, CardContent, Grid, IconButton, Typography } from '@mui/material';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';

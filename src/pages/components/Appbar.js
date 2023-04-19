@@ -1,3 +1,7 @@
+//Dynamic MUI Appbar Component. 
+//Visit https://mui.com/material-ui/react-app-bar/ if you want to know more on how it works
+//I have changed it a bit to our visual design, the main functionalities work the same. 
+//@author Denis Paskevic
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

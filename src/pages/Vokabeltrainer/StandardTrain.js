@@ -1,3 +1,5 @@
+//Standard Trainer
+//@author Denis Paskevic
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Card, Container, Typography, TextField, Button } from '@mui/material';

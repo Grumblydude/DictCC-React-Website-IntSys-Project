@@ -1,3 +1,7 @@
+/* Dict.cc redesign Student Project. React Application using the MUI Component Library
+@authors Denis Paskevic, Enrique Rempp
+*/
+
 import * as React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home"
@@ -26,6 +30,7 @@ const theme = createTheme({
   },
 });
 
+//React router allows navigation without reloading the whole page
 function App() {
   return (
     <ThemeProvider theme={theme}>
