@@ -1,3 +1,7 @@
+//Dynamic MUI Appbar Component. 
+//Visit https://mui.com/material-ui/react-app-bar/ if you want to know more on how it works
+//I have changed it a bit to our visual design, the main functionalities work the same. 
+//@author Denis Paskevic
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,13 +16,32 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink } from 'react-router-dom';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+
+
+import '../css/colors.module.css'
+import '../css/typography.module.css'
+import '../css/theme.css'
+import '../css/tokens.css'
 import './Appbarstyles.css';
-const pages = ['Home', 'Vokabeltrainer', 'Community', 'FAQ', 'Login'];
-const settings = ['Profile', 'Dashboard', 'Login', 'Logout'];
+
+const pages = [
+  { name: 'Home', icon: <HomeOutlinedIcon/> },
+  { name: 'Vokabeltrainer', icon: <LayersOutlinedIcon /> },
+  /*{ name: 'Community', icon: <GroupOutlinedIcon /> },*/
+  { name: 'FAQ', icon: <HelpOutlineOutlinedIcon /> },
+];
+
+const settings = ['Profile', 'Dashboard', 'LogIn', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [loggedIn, setLoggedIn] = React.useState(false)
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,147 +59,149 @@ function ResponsiveAppBar() {
   };
 
 
-return (
-  <AppBar position="static" sx={{ bgcolor: '#FFFBFF' }}>
-    <Container maxwidth="xl">
-      <Toolbar disableGutters>
-        <Typography
-          variant="h4"
-          noWrap
-          component="a"
-          href="/"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-            fontFamily: 'roboto',
-            fontWeight: 700,
-            letterSpacing: '.2rem',
-            color: 'black',
-            textDecoration: 'none',
-          }}
-        >
-          <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link>
-        </Typography>
-
-        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleOpenNavMenu}
-            color="black"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
+  return (
+    <AppBar position="static" sx={{ bgcolor: '#FFFBFF' }}>
+      <Container maxwidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h4"
+            noWrap
+            component="a"
+            href="/"
             sx={{
-              display: { xs: 'block', md: 'none', color: "black" },
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'roboto',
+              fontWeight: 700,
+              letterSpacing: '.2rem',
+              color: 'black',
+              textDecoration: 'none',
             }}
           >
+            <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link>
+          </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="black"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none', color: "black" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.icon}
+                    <NavLink
+                      to={"/" + page.name}
+                      activeClassName="active"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {page.name}
+                    </NavLink>
+
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'roboto',
+              fontWeight: 700,
+              letterSpacing: '.2rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link>
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">
+              <Button
+                key={page.name}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'black', display: 'block' }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  {page.icon}
                   <NavLink
-                    to={"/" + page}
-                    exact
+                    to={"/" + page.name}
                     activeClassName="active"
                     style={{ textDecoration: "none"}}
                   >
-                    {page}
+                    {page.name}
                   </NavLink>
-
-                </Typography>
-              </MenuItem>
+                </Box>
+              </Button>
             ))}
-          </Menu>
-        </Box>
-        <Typography
-          variant="h5"
-          noWrap
-          component="a"
-          href=""
-          sx={{
-            mr: 2,
-            display: { xs: 'flex', md: 'none' },
-            flexGrow: 1,
-            fontFamily: 'roboto',
-            fontWeight: 700,
-            letterSpacing: '.2rem',
-            color: 'inherit',
-            textDecoration: 'none',
-          }}
-        >
-          <Link style={{ textDecoration: "none", color: "#FF8E13" }} to={"Home"}>Dicc.t</Link>
-        </Typography>
-        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {pages.map((page) => (
-            <Button
-              key={page}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'black', display: 'block' }}>
-              <NavLink
-                to={"/" + page}
-                exact
-                activeClassName="active"
-                style={{ textDecoration: "none"}}
-              >
-                {page}
-              </NavLink>
+          </Box>
 
-            </Button>
-          ))}
-        </Box>
-
-        <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            sx={{ mt: '45px' }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">
-                  <Link style={{ textDecoration: "none", color: "black" }} to={setting}>
-                    {setting}
-                  </Link>
-                </Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-      </Toolbar>
-    </Container>
-  </AppBar>
-);
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link style={{ textDecoration: "none", color: "black" }} to={setting}>
+                      {setting}
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }
 export default ResponsiveAppBar;

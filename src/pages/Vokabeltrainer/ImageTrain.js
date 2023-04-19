@@ -1,24 +1,19 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import Appbar from './components/Appbar';
+import Appbar from '../components/Appbar';
 import { Container } from '@mui/system';
-import {Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
-import './css/colors.module.css'
-import './css/typography.module.css'
-import './css/theme.css'
-import './css/tokens.css'
-
-function Community() {
+function ImageTrain() {
 
     return (
         <React.Fragment>
         <CssBaseline />
-        <div className="Home">
+        <div>
             <main>
                 <div>
                     <Container>
-                        <Typography variant='h2' align='center'>Community</Typography>
+                        <Typography variant='h2' align='center'>This Training is not implemented! Only Standard Trainer is currently usable</Typography>
                     </Container>
                 </div>
             </main>
@@ -27,4 +22,4 @@ function Community() {
     );
 }
 
-export default Community;
+export default ImageTrain;

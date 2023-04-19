@@ -1,6 +1,12 @@
+
+/* The main Translator
+//@author Denis Paskevic
+//This code is far from clean. Whoever uses this, should know that styling with mui should be done through the style functionalities and rarely used through sx.
+//The whole project was a bit rushed at the end due to other exams.
+*/
+
 /*TODO:
 Fix the bug where autocomplete doesnt update the value. However this low prio since the other features need to be installed.
-
 */
 
 import { Autocomplete, Card, Button, Grid, TextField, Tabs, Tab, Box, Typography, Divider, Container, CardContent, Paper, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
@@ -9,6 +15,14 @@ import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import axios from "axios";
+
+import '../css/colors.module.css'
+import '../css/typography.module.css'
+import '../css/theme.css'
+import '../css/tokens.css'
 
 export default function Translator() {
 
@@ -16,9 +30,20 @@ export default function Translator() {
 
   const [sourceLanguage, setSourceLanguage] = useState('en');
   const [targetLanguage, setTargetLanguage] = useState('de');
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
   const [showAccordion, setShowAccordion] = useState(false);
 
+  const [anchorEl, setAnchorEl] = useState(null); //for tooltip in settings
+
+  const handleOpenMenu = (event) => { //for tooltip in settings
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => { //for tooltip in settings
+    setAnchorEl(null);
+  };
+
+  //Changes the languages
   const handleSourceLanguageChange = (event, newValue) => {
     if (newValue !== targetLanguage) {
       swapLanguages();
@@ -41,22 +66,13 @@ export default function Translator() {
     }
   };
 
-  const resultTextColor = () => {
-    if (getTranslation() === "" || getTranslation() === "Result") {
-
-      return "grey"
-    }
-    setShowAccordion(true);
-    return "black"
-  }
-
   const listLanguageValues = () => {
     if (sourceLanguage === "en") {
       return examples.map((values) => values.english);
     }
     return examples.map((values) => values.german);
   }
-  //Start getter for values------------------------------------------------ Redundant shitty codestyle bcuz no time and no experience------------------------------------------
+  //Start getter for values------------------------------------------------ Redundant extremely bad codestyle. Not enough time was left and i was tired. This can be done better.------------------------------------------
   let translation = "Result";
   const getTranslation = () => {
 
@@ -147,13 +163,85 @@ export default function Translator() {
     }
     return wordArray;
   }
-  //------------------------------------------------------------------------------------------
+
   function swapLanguages() {
     setSourceLanguage(targetLanguage);
     setTargetLanguage(sourceLanguage);
     let tempInputText = inputText;
     setInputText(translation);
     translation = tempInputText;
+  }
+  //End of redundant code------------------------------------------------------------------------------------------
+
+
+  //---Translator LibreAPI Functionalities-----------------------------
+  //While i was not able to find a lexicon api. I found the free open source LibreTranslate API. It sends a POST request to their webpage and receives the translation.
+  //
+  const [translation2, setTranslation2] = useState("");
+  const [libreON, setLibreON] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log("Input text before request: " + inputText);
+      if (inputText && inputText.trim() !== "") {
+        axios
+          .post("https://libretranslate.de/translate", {
+            q: inputText,
+            source: sourceLanguage,
+            target: targetLanguage,
+          })
+          .then((response) => {
+            setTranslation2(response.data.translatedText);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [inputText, targetLanguage]);
+
+  const handleInput = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleTranslation = () => {
+    console.log("Input in handletranslate: " + inputText);
+    if ((inputText && inputText.trim() !== "") && libreON) {
+      axios
+        .post("https://libretranslate.de/translate", {
+          q: inputText,
+          source: sourceLanguage,
+          target: targetLanguage,
+        })
+        .then((response) => {
+          setTranslation2(response.data.translatedText);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const handleNormalTranslator = () => {
+    setLibreON(false);
+    handleCloseMenu();
+  };
+
+  const handleLibreAPI = () => {
+    setLibreON(true);
+    handleCloseMenu();
+  };
+  //---END OF: Translator LibreAPI Functionalities-----------------------------
+
+  //Small roundabout for styling
+  const resultTextColor = () => {
+    if (getTranslation() === "Result" && (!libreON)) {
+
+      return "grey"
+    }
+    setShowAccordion(true);
+    return "black"
   }
 
   return (
@@ -163,7 +251,6 @@ export default function Translator() {
           <Card sx={{ marginTop: '3rem' }}>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container>
-
                 <Grid item xs={12}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Tabs
@@ -171,7 +258,7 @@ export default function Translator() {
                       onChange={handleSourceLanguageChange}
                       variant="scrollable"
                       scrollButtons="auto"
-                      sx={{ flexGrow: 0.595, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
+                      sx={{ flexGrow: 0.630, indicator: { backgroundColor: '#FF8E13 !important' }, '& .Mui-selected': { color: '#FF8E13 !important' } }}
                       TabIndicatorProps={{
                         style: {
                           backgroundColor: "#FF8E13"
@@ -203,7 +290,20 @@ export default function Translator() {
                       <Tab label="German" value="de" />
                     </Tabs>
                     <Typography variant="h6" component="span" sx={{ display: 'flex', alignItems: 'center', marginX: 1.5 }}>
-                      <SettingsOutlinedIcon></SettingsOutlinedIcon>
+                      <IconButton onClick={handleOpenMenu}>
+                        <SettingsOutlinedIcon></SettingsOutlinedIcon>
+                      </IconButton>
+                      <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleCloseMenu}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                        getContentAnchorEl={null}
+                      >
+                        <MenuItem onClick={handleNormalTranslator}>Normal Translator</MenuItem>
+                        <MenuItem onClick={handleLibreAPI}>Libre API</MenuItem>
+                      </Menu>
                     </Typography>
                   </Box>
 
@@ -237,7 +337,13 @@ export default function Translator() {
                           value={inputText}
                         />
                       )}
-                      onChange={(event, value) => setInputText(value)} //inputtext muss sich aktualisieren wenn 
+                      onChange={(event, value) => {
+                        if (value === null) {
+                          setInputText(event.target.value);
+                        } else {
+                          setInputText(value);
+                        }
+                      }}
                     />
                   </Box>
                 </Grid>
@@ -254,13 +360,32 @@ export default function Translator() {
                         color: resultTextColor
                       }}
                     >
-                      {getTranslation()}
+                      {libreON ? translation2 : getTranslation()}
                     </Typography>
                   </Box>
                 </Grid>
               </Grid>
             </Box>
           </Card>
+          {libreON &&
+            <Button
+              variant="contained"
+              onClick={handleTranslation}
+              sx={{
+                backgroundColor: "#FFA500",
+                color: "white",
+                marginTop: 1.5,
+                "&:hover": {
+                  backgroundColor: "#FFA500"
+                },
+                "&:active": {
+                  backgroundColor: "#FFA500"
+                }
+              }}
+            >
+              Translate with Libre
+            </Button>
+          }
         </Container>
       </Box>
       <Box padding={2}>
@@ -269,9 +394,7 @@ export default function Translator() {
             {showAccordion && ( // render cards if showCards is true
 
               <Paper elevation={0}>
-                <Grid container spacing={0.5} backgroundColor="lightgrey">
-                  <Grid item xs={12}>
-                  </Grid>
+                <Grid container spacing={0.5} backgroundColor="#FFFBFF">
                   <Grid item xs={12}>
                     <Accordion>
                       <AccordionSummary

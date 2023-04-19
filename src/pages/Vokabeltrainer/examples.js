@@ -1,3 +1,8 @@
+//@author Denis Paskevic
+
+/* We were not able to find a free api which supported a lexicon with a vocabulary. So i created an Array of examples to show the functionalities.
+*/
+
 const examples = [
   {
     value: 'hello',
@@ -331,7 +336,7 @@ const examples = [
   },
   {
     value: 'wall',
-    german: 'Mauer',
+    german: 'Wand',
     english: 'wall',
     GERdefinition: 'eine vertikale Struktur aus Stein oder Ziegeln, die dazu dient, einen Raum zu umgeben oder zu teilen',
     ENdefinition: 'a vertical structure made of stone or bricks that serves to enclose or divide a space',
