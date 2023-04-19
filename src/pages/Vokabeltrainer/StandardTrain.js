@@ -14,9 +14,11 @@ function StandardTrain() {
     const [sourceLanguage, setSourceLanguage] = useState('');
     const [targetLanguage, setTargetLanguage] = useState('');
     const [inputColor, setInputColor] = useState('');
+    const [borderColor, setBorderColor] = useState('darkorange !important');
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongCount, setWrongCount] = useState(0);
     const [count, setCount] = useState(0);
+
     const getRandomWord = () => {
         const words = sourceLanguage === 'en' ? examples.filter(example => example.english) : examples.filter(example => example.german);
         const randomIndex = Math.floor(Math.random() * words.length);
@@ -24,7 +26,6 @@ function StandardTrain() {
     };
 
     const [currentWord, setCurrentWord] = useState(getRandomWord);
-
 
     const handleLanguageChange = (source, target) => {
         setSourceLanguage(source);
@@ -38,8 +39,10 @@ function StandardTrain() {
             setCount(count + 1);
             setCorrectCount(correctCount + 1);
             setInputColor('green');
+            setBorderColor('green');
         } else {
             setInputColor('red');
+            setBorderColor('red');
             setCount(count + 1);
             setWrongCount(wrongCount + 1);
         }
@@ -47,7 +50,8 @@ function StandardTrain() {
             setCurrentWord(getRandomWord());
             setInputValue('');
             setInputColor('default');
-        }, 500);
+            setBorderColor('darkorange');
+        }, 800);
     };
 
     const handleCheckWithoutNext = () => {
@@ -60,7 +64,7 @@ function StandardTrain() {
         setTimeout(() => {
 
             setInputColor('default');
-        }, 500);
+        }, 800);
     };
 
     const handleNext = () => {
@@ -183,7 +187,7 @@ function StandardTrain() {
                                     width: "100%",
                                     input: { color: inputColor },
                                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                                        borderColor: "darkorange",
+                                        borderColor: borderColor,
                                     },
                                 }}
                                 InputLabelProps={{
